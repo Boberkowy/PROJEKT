@@ -5,26 +5,23 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="Parcel")
 public class Parcel{
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "parcel_id", unique = true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotNull
     private Date postingDate;
     private Date receivingDate;
     @OneToOne
     @NotNull
-    @JoinColumn(name = "addressId")
+    @JoinColumn(name = "posting_address_id")
     private Address postingAddress;
     @OneToOne
     @NotNull
-    @JoinColumn(name = "addressId")
+    @JoinColumn(name = "receiving_address_id")
     private Address receivingAddress;
 
-    public Parcel(){
-
-    }
+    public Parcel(){}
 
     public Parcel(Date postingDate, Address postingAddress, Address receivingAddress){
         this.postingDate = postingDate;

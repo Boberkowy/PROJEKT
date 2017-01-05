@@ -4,11 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Address")
 public class Address{
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="addressid", unique = true)
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String region;
     @NotNull
     private String city;
@@ -20,9 +19,7 @@ public class Address{
     @Column(name="house_number")
     private String number;
 
-    public Address(){
-
-    }
+    protected Address(){}
 
     public Address(String region, String city, String zipcode, String street, String number){
         this.region = region;
@@ -31,10 +28,10 @@ public class Address{
         this.street = street;
         this.number = number;
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getRegion() {
@@ -66,5 +63,11 @@ public class Address{
     }
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Address[id='%d',region='%s', city='%s', zipcode='%s', street='%s', number='%s']",
+                id, region, city, zipcode, street, number);
     }
 }
