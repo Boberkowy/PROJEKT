@@ -1,7 +1,6 @@
 package com.example.Model.Domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -10,16 +9,14 @@ public class Parcel{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "parcel_id", unique = true)
     private int id;
-    @NotNull
+
     private Date postingDate;
     private Date receivingDate;
     @OneToOne
-    @NotNull
     @JoinColumn(name = "addressId")
     private Address postingAddress;
     @OneToOne
-    @NotNull
-    @JoinColumn(name = "addressId")
+    @JoinColumn(name = "addressId",insertable = false, updatable = false)
     private Address receivingAddress;
 
     public Parcel(){

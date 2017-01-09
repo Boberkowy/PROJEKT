@@ -1,7 +1,6 @@
 package com.example.Model.Domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Address")
@@ -10,13 +9,12 @@ public class Address{
     @Column(name="addressid", unique = true)
     private int id;
     private String region;
-    @NotNull
+
     private String city;
-    @NotNull
+
     private String zipcode;
-    @NotNull
+
     private String street;
-    @NotNull
     @Column(name="house_number")
     private String number;
 
