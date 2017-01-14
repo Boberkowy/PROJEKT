@@ -9,28 +9,28 @@ import javax.validation.constraints.NotNull;
 public class Worker extends Person{
 
     @NotNull
-    private String PESEL;
+    private String pesel;
     @ManyToOne(optional = false)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     protected Worker(){}
 
-    private Worker(String firstName, String lastName, String email, String phoneNumber, String PESEL, Address address){
+    private Worker(String firstName, String lastName, String email, String phoneNumber, String pesel, Address address){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
         this.setPhoneNumber(phoneNumber);
-        this.setPESEL(PESEL);
+        this.setPesel(pesel);
         this.setAddress(address);
     }
 
-    public String getPESEL() {
-        return PESEL;
+    public String getPesel() {
+        return pesel;
     }
 
-    public void setPESEL(String PESEL) {
-        this.PESEL = PESEL;
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 
     public Address getAddress() {

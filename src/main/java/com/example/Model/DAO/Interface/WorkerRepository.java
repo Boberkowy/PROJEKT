@@ -5,5 +5,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface WorkerRepository extends PersonBaseRepository<Worker> {
-    Worker findByPESEL(String PESEL);
+    Worker findByPesel(String Pesel);
 }

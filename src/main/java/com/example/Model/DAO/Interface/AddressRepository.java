@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AddressRepository extends CrudRepository<Address, Long> {
     List<Address> findByZipcode(String zipcode);
-    List<Address> findByZipcodeAndStreet(String zipcode, String street);
-    Address findByZipcodeStreetAndNumber(String zipcode, String street, String number);
+   // List<Address> findByZipcodeAndStreet(String zipcode, String street);
+   // Address findByZipcodeStreetAndNumber(String zipcode, String street, String number);
 
 }

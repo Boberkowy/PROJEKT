@@ -1,18 +1,20 @@
 package com.example.Model.Domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Address{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String region;
-
+    @NotNull
     private String city;
-
+    @NotNull
     private String zipcode;
-
+    @NotNull
     private String street;
+
     @Column(name="house_number")
     private String number;
 

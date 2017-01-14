@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Courier extends Person {
     @NotNull
-    private String PESEL;
+    private String pesel;
     @ManyToOne(optional = false)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
@@ -16,12 +16,12 @@ public class Courier extends Person {
     protected Courier(){
 
     }
-    public Courier(String firstName, String lastName,String email, String phoneNumber,  String PESEL, Address address){
+    public Courier(String firstName, String lastName,String email, String phoneNumber,  String pesel, Address address){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
         this.setPhoneNumber(phoneNumber);
-        this.setPESEL(PESEL);
+        this.setPesel(pesel);
         this.setAddress(address);
     }
 
@@ -33,11 +33,11 @@ public class Courier extends Person {
         this.address = address;
     }
 
-    public String getPESEL() {
-        return PESEL;
+    public String getPesel() {
+        return pesel;
     }
 
-    public void setPESEL(String PESEL) {
-        this.PESEL = PESEL;
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 }
