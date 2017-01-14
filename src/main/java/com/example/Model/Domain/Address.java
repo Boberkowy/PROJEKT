@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 public class Address{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="addressid", unique = true)
     private int id;
     private String region;
 

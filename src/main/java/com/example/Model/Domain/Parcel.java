@@ -7,7 +7,6 @@ import java.util.Date;
 @Entity
 public class Parcel{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "parcel_id", unique = true)
     private int id;
 
     private Date postingDate;
