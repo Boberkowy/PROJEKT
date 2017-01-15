@@ -11,11 +11,17 @@ public class Parcel{
 
     private Date postingDate;
     private Date receivingDate;
+    @ManyToOne
+    @JoinColumn(name = "clientId")
+    private Client client;
+    @ManyToOne
+    @JoinColumn(name = "courierId")
+    private Courier courier;
     @OneToOne
-    @JoinColumn(name = "addressId")
+    @JoinColumn(name = "postingAddressId")
     private Address postingAddress;
     @OneToOne
-    @JoinColumn(name = "addressId",insertable = false, updatable = false)
+    @JoinColumn(name = "receivingAddressId")
     private Address receivingAddress;
     @NotNull
     private String status;
@@ -24,18 +30,21 @@ public class Parcel{
 
     }
 
-    public Parcel(Date postingDate, Address postingAddress, Address receivingAddress, String status){
+    public Parcel(Date postingDate, Address postingAddress, Address receivingAddress, String status, Client client){
         this.setReceivingDate(postingDate);
         this.setPostingAddress(postingAddress);
         this.setReceivingAddress(receivingAddress);
         this.setStatus(status);
+        this.setClient(client);
     }
-    public Parcel(Date postingDate, Date receivingDate, Address postingAddress, Address receivingAddress, String status){
+    public Parcel(Date postingDate, Date receivingDate, Address postingAddress, Address receivingAddress, String status,Client client, Courier courier){
         this.setPostingDate(postingDate);
         this.setReceivingDate(receivingDate);
         this.setPostingAddress(postingAddress);
         this.setReceivingAddress(receivingAddress);
         this.setStatus(status);
+        this.setClient(client);
+        this.setCourier(courier);
     }
 
     public int getId() {
@@ -78,5 +87,21 @@ public class Parcel{
     }
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Courier getCourier() {
+        return courier;
+    }
+
+    public void setCourier(Courier courier) {
+        this.courier = courier;
     }
 }
