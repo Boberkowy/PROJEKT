@@ -18,8 +18,6 @@ package com.example.Controller;
 @Controller
 public class RegisterController {
 
-  @Autowired
-  private NotificationService notifyService;
 
   @RequestMapping(value = "/register" , method = RequestMethod.GET)
   String reg(){
@@ -29,12 +27,12 @@ public class RegisterController {
   @RequestMapping(value = "/register", method = RequestMethod.POST)
   String register(@Valid RegisterViewModel registerViewModel, BindingResult bindingResult, @Valid ClientRepository clientRepository){
     if(bindingResult.hasErrors()){
-      notifyService.addErrorMessage("The form has been filled incorrectly!");
+
       return "user/register";
     }
     Client client = new Client(registerViewModel.getFirstName(), registerViewModel.getLastName(), registerViewModel.getEmail(), registerViewModel.getPhoneNumber());
     clientRepository.save(client);
-    notifyService.addInfoMessage("Registration Successful");
+
     return "redirect:/";
   }
 }

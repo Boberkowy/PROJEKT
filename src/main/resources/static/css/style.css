@@ -30,6 +30,8 @@
 
 body{
     background-size: cover;
+    background-image: url("/static/images/bg.jpg");
+
 }
 #ober-logo span {
     background: white;
