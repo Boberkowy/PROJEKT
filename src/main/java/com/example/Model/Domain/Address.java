@@ -1,20 +1,20 @@
 package com.example.Model.Domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Address")
 public class Address{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="addressid", unique = true)
     private int id;
     private String region;
-
+    @NotNull
     private String city;
-
+    @NotNull
     private String zipcode;
-
+    @NotNull
     private String street;
+
     @Column(name="house_number")
     private String number;
 
@@ -23,11 +23,11 @@ public class Address{
     }
 
     public Address(String region, String city, String zipcode, String street, String number){
-        this.region = region;
-        this.city = city;
-        this.zipcode = zipcode;
-        this.street = street;
-        this.number = number;
+        this.setRegion(region);
+        this.setCity(city);
+        this.setZipcode(zipcode);
+        this.setStreet(street);
+        this.setNumber(number);
     }
     public int getId() {
         return id;

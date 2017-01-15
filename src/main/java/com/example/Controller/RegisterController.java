@@ -11,7 +11,6 @@ package com.example.Controller;
 public class RegisterController {
 
   @RequestMapping(value = "/register" , method = RequestMethod.GET)
-
   String reg(){
     return "register";
   }
