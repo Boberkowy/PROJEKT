@@ -17,6 +17,12 @@ public class Client extends Person {
 
     protected Client(){}
 
+    public Client(String firstName, String lastName, String email, String phoneNumber){
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEmail(email);
+        this.setPhoneNumber(phoneNumber);
+    }
     public Client(String firstName, String lastName, String email, String phoneNumber, List<Address> addresses){
         this.setFirstName(firstName);
         this.setLastName(lastName);
