@@ -18,10 +18,10 @@ public class Parcel{
     @JoinColumn(name = "courierId")
     private Courier courier;
     @OneToOne
-    @JoinColumn(name = "addressId")
+    @JoinColumn(name = "postingAddressId")
     private Address postingAddress;
     @OneToOne
-    @JoinColumn(name = "addressId")
+    @JoinColumn(name = "receivingAddressId")
     private Address receivingAddress;
     @NotNull
     private String status;
