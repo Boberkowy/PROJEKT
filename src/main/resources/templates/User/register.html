@@ -18,7 +18,7 @@
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
-          <li class ="active"><a href="index.jsp">Strona Główna</a></li>
+          <li class ="active"><a href="/">Strona Główna</a></li>
           <li><a href="">Nadaj paczkę</a></li>
           <li><a href="">Znajdź paczkę</a></li>
           <li><a href="">Panel Uzytkownika</a></li>
@@ -31,13 +31,12 @@
     <div class = "container">
       <div class = "col-md 8 col-md-offset-2 textcenter">
         <p id="chuj">Rejestracja</p>
-        <form class="form-block" id="ober-header-form">
-          <input type="text" class="form-control" id="login" placeholder="Login" />
-          <input type="password" class="form-control" id="password" placeholder="Hasło" />
-          <input type="email" class="form-control" id="email" placeholder="Email" />
-          <input type="text" class="form-control" id="name" placeholder="Imię" />
-          <input type="text" class="form-control" id="surname" placeholder="Nazwisko" />
-          <button type="button" class="btn btn-success" id="loginBtn">Zaloguj</button>
+        <form class="form-block" id="ober-header-form" th:object="${register}"  method="post" >
+          <input type="text" class="form-control" name="username" placeholder="Login" th:value="*{username}"/>
+          <input type="password" class="form-control" name="password" placeholder="Hasło" th:value="*{password}"/>
+          <input type="email" class="form-control" name="email" placeholder="Email" th:value = "*{email}"/>
+
+          <input type="submit" class="btn btn-success" name="submit" id="registerBtn">Zarejestruj się</input>
         </form>
 
 

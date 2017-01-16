@@ -8,13 +8,9 @@ import javax.validation.constraints.NotNull;
 public abstract class Person {
     @Id  @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @NotNull
     private String firstName;
-    @NotNull
     private String lastName;
-    @NotNull
     private String username;
-    @NotNull
     private String password;
     private String email;
     private   String phoneNumber;
