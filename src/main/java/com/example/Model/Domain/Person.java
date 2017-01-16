@@ -12,6 +12,10 @@ public abstract class Person {
     private String firstName;
     @NotNull
     private String lastName;
+    @NotNull
+    private String username;
+    @NotNull
+    private String password;
     private String email;
     private   String phoneNumber;
 
@@ -55,5 +59,21 @@ public abstract class Person {
 
     protected void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    protected void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    protected void setUsername(String username) {
+        this.username = username;
     }
 }

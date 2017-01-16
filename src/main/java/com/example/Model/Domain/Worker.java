@@ -16,13 +16,15 @@ public class Worker extends Person{
 
     protected Worker(){}
 
-    private Worker(String firstName, String lastName, String email, String phoneNumber, String pesel, Address address){
+    private Worker(String firstName, String lastName, String email, String phoneNumber, String pesel, Address address,String username, String password){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
         this.setPhoneNumber(phoneNumber);
         this.setPesel(pesel);
         this.setAddress(address);
+        this.setUsername(username);
+        this.setPassword(password);
     }
 
     public String getPesel() {

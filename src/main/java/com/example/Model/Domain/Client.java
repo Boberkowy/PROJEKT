@@ -17,18 +17,22 @@ public class Client extends Person {
 
     protected Client(){}
 
-    public Client(String firstName, String lastName, String email, String phoneNumber){
+    public Client(String firstName, String lastName, String email, String phoneNumber, String username, String password){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
         this.setPhoneNumber(phoneNumber);
+        this.setUsername(username);
+        this.setPassword(password);
     }
-    public Client(String firstName, String lastName, String email, String phoneNumber, List<Address> addresses){
+    public Client(String firstName, String lastName, String email, String phoneNumber, List<Address> addresses,String username, String password){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
         this.setPhoneNumber(phoneNumber);
         this.setAddressList(addresses);
+        this.setUsername(username);
+        this.setPassword(password);
     }
 
     public List<Address> getAddressList() {
