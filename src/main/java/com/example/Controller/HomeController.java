@@ -1,15 +1,10 @@
 package com.example.Controller;
 
-<<<<<<< HEAD
-import com.example.Model.ViewModels.LoginViewModell;
-=======
 import com.example.Model.DAO.Interface.PersonRepository;
 import com.example.Model.ViewModels.LoginViewModel;
-import com.example.Model.ViewModels.RegisterViewModel;
 import com.example.services.NotificationService;
 import com.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> 8d58773a4ab842c2aa0b1b4d28da49a44f52b7df
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,28 +31,18 @@ public class HomeController {
 
   @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String index(Model model){
-      LoginViewModell loginViewModel= new LoginViewModell();
+      LoginViewModel loginViewModel= new LoginViewModel();
        model.addAttribute("login", loginViewModel);
       return "index";
     }
 
-<<<<<<< HEAD
-    @RequestMapping(value ="/", method = RequestMethod.GET)
-      public String loginPage(@Valid LoginViewModell loginViewModel, BindingResult bindingResult){
-      checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword());
-
-    }
-
-  }
-=======
     @RequestMapping(value ="/", method = RequestMethod.POST)
       public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult){
-        if(userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository)){
-          return "index";
+        if(userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository) == false){
+          return "/";
         }
-        return "redirect:/";
+        return "redirect:/User/profile";
     }
->>>>>>> 8d58773a4ab842c2aa0b1b4d28da49a44f52b7df
 
 
 }

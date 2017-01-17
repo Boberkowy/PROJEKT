@@ -45,7 +45,7 @@ public class RegisterController {
 
     Client client = new Client(registerViewModel.getUsername(),registerViewModel.getPassword(),registerViewModel.getEmail());
     clientRepository.save(client);
-    return "redirect:/";
+    return "redirect:/User/profile";
   }
 
 

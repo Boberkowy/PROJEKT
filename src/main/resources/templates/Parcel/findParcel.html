@@ -15,33 +15,31 @@
   <nav class="ober-nav" role="navigation">
     <div class ="row">
       <div class = "col-xs-2">
-        <div id="ober-logo"><a href = "index.html"><span>SKL</span></a></div>
+        <div id="ober-logo"><a href = "/" th:href="@{/}"><span>SKL</span></a></div>
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
           <li><a href="">Nadaj paczkę</a></li>
           <li><a href="">Znajdź paczkę</a></li>
           <li><a href="">Panel uzytkownika</a></li>
-          <li class="btn-cta" id="regBtn"><a href = "User/register.html" th:href="@{/User/register}"><span>Rejestracja</span></a></li>
+          <li class="btn-cta" id="regBtn"><a href ="/" th:href="@{/User/logout}"><span>Wyloguj</span></a></li>
         </ul>
       </div>
     </div>
   </nav>
-
-  <header id="ober-header" class="ober-cover" role="banner">
+  <header id="ober-header" class="ober-cover">
     <div class = "container">
       <div class = "col-md 8 col-md-offset-2 textcenter">
-        <p id="chuj">Logowanie</p>
-        <form class="form-block" id="ober-header-form" th:object="${login}" method="post">
-          <input type="text" class="form-control" name="username" placeholder="Login" th:value="*{username}"/>
-          <input type="password" class="form-control" name="password" placeholder="Hasło" th:value="*{password}"/>
-          <input type= "submit" class="btn btn-success" id="loginBtn" value="Zaloguj"/>
+        <p id="chuj">Nadaj paczkę</p>
+        <form class="form-block" id="ober-header-form" th:object="${findParcel}"  method="post" >
+          <input type="text" class="form-control" name="parcelNumber" placeholder="" th:value="*{parcelNumber}"/>
+          <input type="submit" class="btn btn-success" name="submit" value="Znajdź paczkę" id="findParcelBtn"/>
         </form>
+
+
       </div>
     </div>
   </header>
-
-
 </div>
 
 
