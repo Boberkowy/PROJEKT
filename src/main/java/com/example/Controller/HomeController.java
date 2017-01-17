@@ -2,7 +2,6 @@ package com.example.Controller;
 
 import com.example.Model.DAO.Interface.PersonRepository;
 import com.example.Model.ViewModels.LoginViewModel;
-import com.example.Model.ViewModels.RegisterViewModel;
 import com.example.services.NotificationService;
 import com.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +38,10 @@ public class HomeController {
 
     @RequestMapping(value ="/", method = RequestMethod.POST)
       public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult){
-        if(userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository)){
-          return "index";
+        if(userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository) == false){
+          return "/";
         }
-        return "redirect:/";
+        return "redirect:/User/profile";
     }
 
 

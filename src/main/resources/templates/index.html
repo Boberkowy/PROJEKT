@@ -19,10 +19,9 @@
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
-          <li class ="active"><a href="/">Strona Główna</a></li>
           <li><a href="">Nadaj paczkę</a></li>
           <li><a href="">Znajdź paczkę</a></li>
-          <li><a href="">Panel Uzytkownika</a></li>
+          <li><a href="">Panel uzytkownika</a></li>
           <li class="btn-cta" id="regBtn"><a href = "User/register.html" th:href="@{/User/register}"><span>Rejestracja</span></a></li>
         </ul>
       </div>
@@ -36,19 +35,12 @@
         <form class="form-block" id="ober-header-form" th:object="${login}" method="post">
           <input type="text" class="form-control" name="username" placeholder="Login" th:value="*{username}"/>
           <input type="password" class="form-control" name="password" placeholder="Hasło" th:value="*{password}"/>
-          <input type= "submit" class="btn btn-success" id="loginBtn">Zaloguj</input>
+          <input type= "submit" class="btn btn-success" id="loginBtn" value="Zaloguj"/>
         </form>
       </div>
     </div>
   </header>
 
-  <div id="regForm">
-    <form id="regeForm">
-      <p>Login</p> <input type="text" id="loginReg"></input>
-      <p>Hasło</p>  <input type="password" id="passwordReg"></input>
-      <p>Email </p> <input type="email" id="emailReg"></input>
-    </form>
-  </div>
 
 </div>
 
