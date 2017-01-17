@@ -33,22 +33,15 @@
     <div class = "container">
       <div class = "col-md 8 col-md-offset-2 textcenter">
         <p id="chuj">Logowanie</p>
-        </inp class="form-block" id="ober-header-form" th:object="${login}" method="post">
+        <form class="form-block" id="ober-header-form" th:object="${login}" method="post">
           <input type="text" class="form-control" name="username" placeholder="Login" th:value="*{username}"/>
           <input type="password" class="form-control" name="password" placeholder="Hasło" th:value="*{password}"/>
-          <input type= "submit" class="btn btn-success" id="loginBtn">Zaloguj</input>
+          <input type= "submit" class="btn btn-success" id="loginBtn" value="Zaloguj"/>
         </form>
       </div>
     </div>
   </header>
 
-  <div id="regForm">
-    <form id="regeForm">
-      <p>Login</p> <input type="text" id="loginReg"></input>
-      <p>Hasło</p>  <input type="password" id="passwordReg"></input>
-      <p>Email </p> <input type="email" id="emailReg"></input>
-    </form>
-  </div>
 
 </div>
 

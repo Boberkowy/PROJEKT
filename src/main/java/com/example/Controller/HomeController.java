@@ -1,7 +1,7 @@
 package com.example.Controller;
 
 import com.example.Model.ViewModels.LoginViewModel;
-import com.example.Model.ViewModels.RegisterViewModel;
+import com.example.Model.DAO.PersonRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,10 +24,13 @@ public class HomeController {
       return "index";
     }
 
-//    @RequestMapping(value ="/", method = RequestMethod.GET)
-//      public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult){
-//
-//    }
+    @RequestMapping(value ="/", method = RequestMethod.GET)
+      public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult){
+      checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword());
+
+    }
+
+  }
 
 
 }
