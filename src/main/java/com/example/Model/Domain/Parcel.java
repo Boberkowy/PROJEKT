@@ -29,6 +29,12 @@ public class Parcel{
     public Parcel(){
 
     }
+    public Parcel(Date postingDate, Address postingAddress, Address receivingAddress, String status) {
+        this.setReceivingDate(postingDate);
+        this.setPostingAddress(postingAddress);
+        this.setReceivingAddress(receivingAddress);
+        this.setStatus(status);
+    }
 
     public Parcel(Date postingDate, Address postingAddress, Address receivingAddress, String status, Client client){
         this.setReceivingDate(postingDate);

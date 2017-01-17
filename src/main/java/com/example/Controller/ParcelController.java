@@ -2,6 +2,7 @@ package com.example.Controller;
 
 import com.example.Model.DAO.Interface.ParcelRepository;
 import com.example.Model.DAO.Interface.PersonRepository;
+import com.example.Model.Domain.Address;
 import com.example.Model.Domain.Client;
 import com.example.Model.Domain.Parcel;
 import com.example.Model.Domain.Person;
@@ -48,9 +49,10 @@ public class ParcelController {
 //      return "User/register";
 //    }
     LocalDate localDate = LocalDate.now();
-    String date  = DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate);
-
-    Parcel parcel = new Parcel(date,addParcelViewModel.getPosting_address(),addParcelViewModel.getReceiving_address(),);
+    Date date  = Date.valueOf(localDate);
+    Address postingAddress = new Address(addParcelViewModel.getPostingRegion(), addParcelViewModel.getPostingCity(), addParcelViewModel.getPostingZipcode(), addParcelViewModel.getPostingStreet(), addParcelViewModel.getPostingNumber());
+    Address receivingAddress = new Address(addParcelViewModel.getReceivingRegion(), addParcelViewModel.getReceivingCity(), addParcelViewModel.getPostingZipcode(), addParcelViewModel.getReceivingStreet(), addParcelViewModel.getReceivingNumber());
+    Parcel parcel = new Parcel(date,postingAddress,receivingAddress, "Parcel Register to send");
     parcelRepository.save(parcel);
     return "redirect:/User/profile";
   }

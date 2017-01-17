@@ -16,19 +16,17 @@ public class Address{
     private String street;
     @Column(name="house_number")
     private String number;
-    private String userId;
 
     public Address(){
 
     }
 
-    public Address(String region, String city, String zipcode, String street, String number, String userId){
+    public Address(String region, String city, String zipcode, String street, String number){
         this.setRegion(region);
         this.setCity(city);
         this.setZipcode(zipcode);
         this.setStreet(street);
         this.setNumber(number);
-        this.setUserId(userId);
     }
     public int getId() {
         return id;
@@ -66,11 +64,5 @@ public class Address{
     public void setNumber(String number) {
         this.number = number;
     }
-    public String getUserId() {
-    return userId;
-  }
-    public void setUserId(String userId) {
-    this.userId = userId;
-  }
 
 }

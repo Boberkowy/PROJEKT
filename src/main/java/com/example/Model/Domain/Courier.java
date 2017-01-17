@@ -35,4 +35,12 @@ public class Courier extends Person {
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
