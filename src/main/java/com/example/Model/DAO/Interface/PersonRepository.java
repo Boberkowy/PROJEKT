@@ -5,6 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface PersonRepository extends PersonBaseRepository<Person> {
-         boolean checkLogin(String username, String password);
+    Person findByUsername (String username);
 
 }
