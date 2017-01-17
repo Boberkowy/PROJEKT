@@ -3,6 +3,7 @@ package com.example.Model.Domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Address{
@@ -16,7 +17,6 @@ public class Address{
     @Column(name="house_number")
     private String number;
     private String userId;
-
 
     public Address(){
 
@@ -72,6 +72,5 @@ public class Address{
     public void setUserId(String userId) {
     this.userId = userId;
   }
-
 
 }

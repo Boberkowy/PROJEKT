@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 public class Courier extends Person {
     @NotNull
     private String pesel;
-  //  @ManyToOne(optional = true)
-  //  @JoinColumn(name = "address_id", referencedColumnName = "id")
-   // private Address address;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     protected Courier(){
 
