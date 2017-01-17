@@ -1,7 +1,6 @@
 package com.example.Controller;
 
-import com.example.Model.ViewModels.LoginViewModel;
-import com.example.Model.DAO.PersonRepositoryImpl;
+import com.example.Model.ViewModels.LoginViewModell;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +18,13 @@ public class HomeController {
 
   @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String index(Model model){
-      LoginViewModel loginViewModel= new LoginViewModel();
+      LoginViewModell loginViewModel= new LoginViewModell();
        model.addAttribute("login", loginViewModel);
       return "index";
     }
 
     @RequestMapping(value ="/", method = RequestMethod.GET)
-      public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult){
+      public String loginPage(@Valid LoginViewModell loginViewModel, BindingResult bindingResult){
       checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword());
 
     }
