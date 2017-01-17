@@ -13,9 +13,9 @@ public abstract class Person {
     private String username;
     private String password;
     private String email;
-    private   String phoneNumber;
+    private String phoneNumber;
 
-    protected Person(){}
+    public Person(){}
 
     public long getId() {
         return id;

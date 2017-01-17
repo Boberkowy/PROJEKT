@@ -6,23 +6,23 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Worker extends Person{
+public class Worker extends Person {
 
     @NotNull
     private String pesel;
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
+    //  @ManyToOne(optional = true)
+    //  @JoinColumn(name = "address_id", referencedColumnName = "id")
+    //  private Address address;
 
-    protected Worker(){}
+    protected Worker() {
+    }
 
-    private Worker(String firstName, String lastName, String email, String phoneNumber, String pesel, Address address,String username, String password){
+    private Worker(String firstName, String lastName, String email, String phoneNumber, String pesel, String username, String password) {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
         this.setPhoneNumber(phoneNumber);
         this.setPesel(pesel);
-        this.setAddress(address);
         this.setUsername(username);
         this.setPassword(password);
     }
@@ -34,12 +34,6 @@ public class Worker extends Person{
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }
+
+
