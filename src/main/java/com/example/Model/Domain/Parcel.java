@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class Parcel{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     private Date postingDate;
     private Date receivingDate;
@@ -53,10 +53,10 @@ public class Parcel{
         this.setCourier(courier);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

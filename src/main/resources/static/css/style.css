@@ -89,3 +89,6 @@ body{
     display: inline-block
 }
 */
+#messages li{
+  font-size: 30px;
+}

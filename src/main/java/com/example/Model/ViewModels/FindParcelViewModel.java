@@ -4,13 +4,13 @@ package com.example.Model.ViewModels;
  * Created by Boberkowy on 17.01.2017.
  */
 public class FindParcelViewModel {
-  private String parcelNumber;
+  private Long parcelNumber;
 
-  public String getParcelNumber() {
+  public Long getParcelNumber() {
     return parcelNumber;
   }
 
-  public void setParcelNumber(String parcelNumber) {
+  public void setParcelNumber(Long parcelNumber) {
     this.parcelNumber = parcelNumber;
   }
 

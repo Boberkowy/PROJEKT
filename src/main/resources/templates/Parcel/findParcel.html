@@ -36,7 +36,13 @@
           <input type="submit" class="btn btn-success" name="submit" value="Znajdź paczkę" id="findParcelBtn"/>
         </form>
 
+        <ul id="messages" th:with="notifyMessages=${session[T(com.example.services
+          .NotificationService).NOTIFY_MSG_SESSION_KEY]}">
+          <li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+              th:class="${#strings.toLowerCase(msg.type)}">
+          </li>
 
+        </ul>
       </div>
     </div>
   </header>

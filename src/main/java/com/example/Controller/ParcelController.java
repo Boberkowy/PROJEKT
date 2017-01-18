@@ -11,6 +11,7 @@ import com.example.Model.ViewModels.AddCourierViewModel;
 import com.example.Model.ViewModels.AddParcelViewModel;
 import com.example.Model.ViewModels.FindParcelViewModel;
 import com.example.Model.ViewModels.RegisterViewModel;
+import com.example.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +38,9 @@ public class ParcelController {
 
   @Autowired
   AddressRepository addressRepository;
+
+  @Autowired
+  NotificationService notificationService;
 
   @RequestMapping(value = "Parcel/addParcel")
   public String addParcel(Model model){
@@ -69,6 +73,16 @@ public class ParcelController {
   public String findParcel(Model model){
     FindParcelViewModel findParcelViewModel = new FindParcelViewModel();
     model.addAttribute("findParcel", findParcelViewModel);
+    return "Parcel/findParcel";
+  }
+
+  @RequestMapping(value = "Parcel/findParcel", method = RequestMethod.POST)
+  public String findParcel(@Valid FindParcelViewModel findParcelViewModel, BindingResult bindingResult,Model model){
+    model.addAttribute("findParcel", findParcelViewModel);
+    Parcel parcell;
+    parcell = parcelRepository.findOne(findParcelViewModel.getParcelNumber());
+    notificationService.addInfoMessage("Status paczki:" + parcell.getStatus());
+
     return "Parcel/findParcel";
   }
 
