@@ -1,5 +1,6 @@
 package com.example.Controller;
 
+import com.example.Model.DAO.Interface.AddressRepository;
 import com.example.Model.DAO.Interface.ParcelRepository;
 import com.example.Model.DAO.Interface.PersonRepository;
 import com.example.Model.Domain.Address;
@@ -34,6 +35,9 @@ public class ParcelController {
   @Autowired
   PersonRepository personRepository;
 
+  @Autowired
+  AddressRepository addressRepository;
+
   @RequestMapping(value = "Parcel/addParcel")
   public String addParcel(Model model){
     AddParcelViewModel addParcelViewModel = new AddParcelViewModel();
@@ -52,7 +56,11 @@ public class ParcelController {
     Date date  = Date.valueOf(localDate);
     Address postingAddress = new Address(addParcelViewModel.getPostingRegion(), addParcelViewModel.getPostingCity(), addParcelViewModel.getPostingZipcode(), addParcelViewModel.getPostingStreet(), addParcelViewModel.getPostingNumber());
     Address receivingAddress = new Address(addParcelViewModel.getReceivingRegion(), addParcelViewModel.getReceivingCity(), addParcelViewModel.getPostingZipcode(), addParcelViewModel.getReceivingStreet(), addParcelViewModel.getReceivingNumber());
+
+    addressRepository.save(postingAddress);
+    addressRepository.save(receivingAddress);
     Parcel parcel = new Parcel(date,postingAddress,receivingAddress, "Parcel Register to send");
+
     parcelRepository.save(parcel);
     return "redirect:/User/profile";
   }
@@ -60,15 +68,9 @@ public class ParcelController {
   @RequestMapping(value = "Parcel/findParcel")
   public String findParcel(Model model){
     FindParcelViewModel findParcelViewModel = new FindParcelViewModel();
-    model.addAttribute("addParcel", findParcelViewModel);
+    model.addAttribute("findParcel", findParcelViewModel);
     return "Parcel/findParcel";
   }
 
 
-  @RequestMapping(value = "Worker/addCourier")
-  public String addCourier(Model model){
-    AddCourierViewModel addCourierViewModel = new AddCourierViewModel();
-    model.addAttribute("addCourier", addCourierViewModel);
-    return "Worker/addCourier";
-  }
 }

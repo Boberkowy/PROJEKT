@@ -14,7 +14,7 @@
   <nav class="ober-nav" role="navigation">
     <div class ="row">
       <div class = "col-xs-2">
-        <div id="ober-logo"><a href = "=index.html" th:href="/index"><span>SKL</span></a></div>
+        <div id="ober-logo"><a href = "=index.html" th:href="@{/}"><span>SKL</span></a></div>
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
@@ -35,7 +35,7 @@
           <input type="password" class="form-control" name="password" placeholder="Hasło" th:value="*{password}"/>
           <input type="email" class="form-control" name="email" placeholder="Email" th:value = "*{email}"/>
 
-          <input type="submit" class="btn btn-success" name="submit" id="registerBtn">Zarejestruj się</input>
+          <input type="submit" class="btn btn-success" name="submit" id="registerBtn" value = "Zarejestruj się"/>
         </form>
 
 

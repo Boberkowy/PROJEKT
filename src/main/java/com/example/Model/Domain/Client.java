@@ -8,7 +8,7 @@ import java.util.Set;
 @Entity
 public class Client extends Person {
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "client_address", joinColumns =
     @JoinColumn(name = "clientId"), inverseJoinColumns =
     @JoinColumn(name = "addressId"))

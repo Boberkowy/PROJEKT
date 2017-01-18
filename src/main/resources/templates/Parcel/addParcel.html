@@ -32,8 +32,19 @@
       <div class = "col-md 8 col-md-offset-2 textcenter">
         <p id="chuj">Nadaj paczkę</p>
         <form class="form-block" id="ober-header-form" th:object="${addParcel}"  method="post" >
-          <textarea type="textarea" class="form-control" name="receiving_address_id" placeholder="Adres nadawcy" th:value="*{posting_address_id}"></textarea>
-          <textarea class="form-control" name="receiving_address_id" placeholder="Adres odbiorcy" th:value="*{receiving_address_id}"></textarea>
+          <h1>Dane nadawcy</h1>
+          <input type="text" class="form-control" name="postingRegion" placeholder="Województwo " th:value="*{postingRegion}"/>
+          <input type="text" class="form-control" name="postingCity"   placeholder="Miasto " th:value="*{postingCity}"/>
+          <input type="text" class="form-control" name="postingZipcode" placeholder="Kod pocztowy  " th:value="*{postingZipcode}"/>
+          <input type="text" class="form-control" name="postingStreet" placeholder="Ulica " th:value="*{postingStreet}"/>
+          <input type="text" class="form-control" name="postingNumber" placeholder="Numer "    th:value="*{postingNumber}"/>
+          <h1>Dane odbiorcy</h1>
+          <input type="text" class="form-control" name="receivingRegion" placeholder="Wojewodztwo" th:value="*{receivingRegion}"/>
+          <input type="text" class="form-control" name="receivingCity" placeholder="Miasto" th:value="*{receivingCity}"/>
+          <input type="text" class="form-control" name="receivingZipcode" placeholder="Kod pocztowy" th:value="*{receivingZipcode}"/>
+          <input type="text" class="form-control" name="receivingStreet" placeholder="Ulica" th:value="*{receivingStreet}"/>
+          <input type="text" class="form-control" name="receivingNumber" placeholder="Numer "    th:value="*{receivingNumber}"/>
+
           <input type="submit" class="btn btn-success" name="submit" value="Nadaj paczkę" id="addParcelBtn"/>
         </form>
 

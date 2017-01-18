@@ -30,9 +30,9 @@
   <header id="ober-header" class="ober-cover">
     <div class = "container">
       <div class = "col-md 8 col-md-offset-2 textcenter">
-        <p id="chuj">Nadaj paczkę</p>
+        <p id="chuj">Znajdź paczkę</p>
         <form class="form-block" id="ober-header-form" th:object="${findParcel}"  method="post" >
-          <input type="text" class="form-control" name="parcelNumber" placeholder="" th:value="*{parcelNumber}"/>
+          <input type="text" class="form-control" name="parcelNumber" placeholder="Numer paczki" th:value="*{parcelNumber}"/>
           <input type="submit" class="btn btn-success" name="submit" value="Znajdź paczkę" id="findParcelBtn"/>
         </form>
 

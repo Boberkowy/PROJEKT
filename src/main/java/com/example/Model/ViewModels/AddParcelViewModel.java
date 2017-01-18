@@ -7,6 +7,7 @@ import java.sql.Date;
  */
 public class AddParcelViewModel {
 
+
   private String postingRegion;
   private String postingCity;
   private String postingZipcode;

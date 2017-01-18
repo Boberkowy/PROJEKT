@@ -30,13 +30,12 @@
   <header id="ober-header" class="ober-cover">
     <div class = "container">
       <div class = "col-md 8 col-md-offset-2 textcenter">
-        <p id="chuj">Nadaj paczkę</p>
-        <form class="form-block" id="ober-header-form" th:object="${addCourier}"  method="post" >
-          <input type = "text"class="form-control" name="courier_id" placeholder="ID Kuriera" th:value="*{courier_id}"/>
-          <input type="text" class="form-control" name="parcel_id" placeholder="ID Paczki" th:value="*{parcel_id}"/>g
+        <p id="chuj">Przypisz paczkę </p>
+        <form class="form-block" id="ober-header-form" th:object="${addCourier}"  method="post">
+          <input type = "text" class="form-control" name="courierId" placeholder="ID Kuriera" th:value="*{courierId}"/>
+          <input type="text" class="form-control" name="parcelId" placeholder="ID Paczki" th:value="*{parcelId}"/>
           <input type="submit" class="btn btn-success" name="submit" value="Przypisz kuriera" id="addParcelBtn"/>
         </form>
-
 
       </div>
     </div>
