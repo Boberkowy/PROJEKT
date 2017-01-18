@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"></meta>
+  <title>System Kuriersko - Logistyczny </title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+  <script type="application/javascript" src="scripts/jquery-3.1.1.js"></script>
+  <script type="application/javascript" src="scripts/jquery-ui.js"></script>
+  <script type="application/javascript" src="scripts/scripts.js"></script>
+</head>
+
+<body style="background-image:url(/images/bg.jpg)">
+<div id="page">
+  <nav class="ober-nav" role="navigation">
+    <div class ="row">
+      <div class = "col-xs-2">
+        <div id="ober-logo"><a href = "/" th:href="@{/}"><span>SKL</span></a></div>
+      </div>
+      <div class="col-xs-10 text-right menu-1">
+        <ul>
+          <li><a href="">Nadaj paczkę</a></li>
+          <li><a href="">Znajdź paczkę</a></li>
+          <li><a href="">Panel admina</a></li>
+          <li class="btn-cta" id="regBtn"><a href ="/" th:href="@{/User/logout}"><span>Wyloguj</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header id="ober-header" class="ober-cover">
+    <div class = "container">
+      <div class = "col-md 8 col-md-offset-2 textcenter">
+        <p id="chuj">Nadaj paczkę</p>
+        <form class="form-block" id="ober-header-form" th:object="${addCourier}"  method="post" >
+          <input type = "text"class="form-control" name="courier_id" placeholder="ID Kuriera" th:value="*{courier_id}"/>
+          <input type="text" class="form-control" name="parcel_id" placeholder="ID Paczki" th:value="*{parcel_id}"/>g
+          <input type="submit" class="btn btn-success" name="submit" value="Przypisz kuriera" id="addParcelBtn"/>
+        </form>
+
+
+      </div>
+    </div>
+  </header>
+</div>
+
+
+</body>
+</html>
