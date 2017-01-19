@@ -6,5 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface ClientRepository extends PersonBaseRepository<Client>{
-   // Client findByAddress(Address address);
+    Client findByUsername(String username);
 }
