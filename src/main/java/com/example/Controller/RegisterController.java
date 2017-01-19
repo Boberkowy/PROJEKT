@@ -14,6 +14,8 @@ package com.example.Controller;
   import org.springframework.web.bind.annotation.RequestMethod;
 
   import javax.validation.Valid;
+  import javax.validation.constraints.Null;
+  import java.util.Objects;
 
 /**
  * Created by Boberkowy on 08.12.2016.
@@ -42,7 +44,14 @@ public class RegisterController {
 //      notifyService.addErrorMessage("Wypełnij formularz poprawnie");
 //      return "User/register";
 //    }
+    Client test = clientRepository.findByUsername(registerViewModel.getUsername());
 
+
+    if(clientRepository.exists(test.getId())) {
+        notifyService.addErrorMessage("Podana nazwa użytkownika jest już zajęta!");
+      return "User/register";
+    }
+    
     Client client = new Client(registerViewModel.getUsername(),registerViewModel.getPassword(),registerViewModel.getEmail());
     clientRepository.save(client);
     return "redirect:/User/profile";
