@@ -38,20 +38,27 @@ public class RegisterController {
   }
 
   @RequestMapping(value = "User/register", method = RequestMethod.POST)
-  public String registerPage(@Valid RegisterViewModel registerViewModel, BindingResult bindingResult){
+  public String registerPage(@Valid RegisterViewModel registerViewModel, BindingResult bindingResult, Model model){
 //    if(bindingResult.hasErrors()){
 //      System.out.println("działa POST, powinien wyrzucić błąd");
 //      notifyService.addErrorMessage("Wypełnij formularz poprawnie");
 //      return "User/register";
 //    }
-    Client test = clientRepository.findByUsername(registerViewModel.getUsername());
-
-
-    if(clientRepository.exists(test.getId())) {
-        notifyService.addErrorMessage("Podana nazwa użytkownika jest już zajęta!");
+//
+//
+    try {
+      Client test = clientRepository.findByUsername(registerViewModel.getUsername());
+    } catch (Exception e){
+      notifyService.addErrorMessage("Login lub mail  istnieje w bazie");
+      model.addAttribute("register", registerViewModel);
       return "User/register";
     }
-    
+
+//    if(clientRepository.exists(test.getId()) == true) {
+//        notifyService.addErrorMessage("Podana nazwa użytkownika jest już zajęta!");
+//      return "User/register";
+//    }
+
     Client client = new Client(registerViewModel.getUsername(),registerViewModel.getPassword(),registerViewModel.getEmail());
     clientRepository.save(client);
     return "redirect:/User/profile";
