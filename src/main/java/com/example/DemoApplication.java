@@ -6,7 +6,7 @@ import org.springframework.data.web.config.SpringDataWebConfigurationMixin;
 
 
 @SpringBootApplication
-public class DemoApplication {
+public class  DemoApplication {
 
 	public static void main(String[] args) {
 	  SpringApplication.run(DemoApplication.class, args);

@@ -3,7 +3,7 @@ package com.example.Controller;
 import com.example.Model.DAO.Interface.ParcelRepository;
 import com.example.Model.Domain.Parcel;
 import com.example.Model.ViewModels.AddCourierViewModel;
-import com.sun.javafx.sg.prism.NGShape;
+import com.example.Model.ViewModels.AddWorkerViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +37,21 @@ public class WorkerController {
     Parcel parcel = new Parcel();
 
     return "Worker/addCourier";
+  }
+
+
+  @RequestMapping(value = "Worker/addWorker")
+  public String addWorker(Model model){
+    AddWorkerViewModel addWorkerViewModel = new AddWorkerViewModel();
+    model.addAttribute("addWorker", addWorkerViewModel);
+    return "Worker/addWorker";
+  }
+
+  @RequestMapping(value = "Worker/addWorker", method = RequestMethod.POST)
+  public String addWorker(@Valid AddWorkerViewModel addWorkerViewModel, BindingResult bindingResult, Model model){
+    model.addAttribute("addWorker", addWorkerViewModel);
+
+    return "Worker/addWorker";
   }
 }
 
