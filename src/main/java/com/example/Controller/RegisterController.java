@@ -54,11 +54,6 @@ public class RegisterController {
       return "User/register";
     }
 
-//    if(clientRepository.exists(test.getId()) == true) {
-//        notifyService.addErrorMessage("Podana nazwa użytkownika jest już zajęta!");
-//      return "User/register";
-//    }
-
     Client client = new Client(registerViewModel.getUsername(),registerViewModel.getPassword(),registerViewModel.getEmail());
     clientRepository.save(client);
     return "redirect:/User/profile";

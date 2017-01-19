@@ -5,22 +5,22 @@ package com.example.Model.ViewModels;
  */
 public class AddCourierViewModel {
 
-  private String courierId;
-  private String parcelId;
+  private long courierId;
+  private long parcelId;
 
-  public String getCourierId() {
+  public long getCourierId() {
     return courierId;
   }
 
-  public void setCourierId(String courierId) {
+  public void setCourierId(long courierId) {
     this.courierId = courierId;
   }
 
-  public String getParcelId() {
+  public long getParcelId() {
     return parcelId;
   }
 
-  public void setParcelId(String parcelId) {
+  public void setParcelId(long parcelId) {
     this.parcelId = parcelId;
   }
 }

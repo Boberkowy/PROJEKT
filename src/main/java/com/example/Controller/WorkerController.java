@@ -1,9 +1,14 @@
 package com.example.Controller;
 
+import com.example.Model.DAO.Interface.AddressRepository;
+import com.example.Model.DAO.Interface.CourierRepository;
 import com.example.Model.DAO.Interface.ParcelRepository;
+import com.example.Model.Domain.Address;
+import com.example.Model.Domain.Courier;
 import com.example.Model.Domain.Parcel;
 import com.example.Model.ViewModels.AddCourierViewModel;
 import com.example.Model.ViewModels.AddWorkerViewModel;
+import com.example.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +27,14 @@ public class WorkerController {
   @Autowired
   ParcelRepository parcelRepository;
 
+  @Autowired
+  CourierRepository courierRepository;
+
+  @Autowired
+  AddressRepository addressRepository;
+
+  @Autowired
+  private NotificationService notifyService;
 
   @RequestMapping(value = "Worker/addCourier")
   public String addCourier(Model model) {
@@ -32,9 +45,9 @@ public class WorkerController {
 
   @RequestMapping(value = "Worker/addCourier", method = RequestMethod.POST)
   public String addCourier(@Valid AddCourierViewModel addCourierViewModel, BindingResult bindingResult, Model model){
-
     model.addAttribute("addCourier", addCourierViewModel);
-    Parcel parcel = new Parcel();
+    parcelRepository.setCourierForParcel(addCourierViewModel.getCourierId(),"Paczka przekazana Kurierowi do doręczenia", addCourierViewModel.getParcelId());
+    notifyService.addInfoMessage("Kurier został dodany do paczki");
 
     return "Worker/addCourier";
   }
@@ -50,6 +63,11 @@ public class WorkerController {
   @RequestMapping(value = "Worker/addWorker", method = RequestMethod.POST)
   public String addWorker(@Valid AddWorkerViewModel addWorkerViewModel, BindingResult bindingResult, Model model){
     model.addAttribute("addWorker", addWorkerViewModel);
+
+    Address address = new Address(addWorkerViewModel.getRegion(),addWorkerViewModel.getCity(),addWorkerViewModel.getZipcode(),addWorkerViewModel.getStreet(),addWorkerViewModel.getNumber());
+    addressRepository.save(address);
+    courierRepository.save(new Courier(addWorkerViewModel.getFirstName(),addWorkerViewModel.getLastName(),addWorkerViewModel.getEmail(), addWorkerViewModel.getPhoneNumber(),addWorkerViewModel.getPesel(), addWorkerViewModel.getUsername(), addWorkerViewModel.getPassword(),address));
+    notifyService.addInfoMessage("Kurier został dodany do systemu.");
 
     return "Worker/addWorker";
   }

@@ -30,7 +30,7 @@ public class Parcel{
 
     }
     public Parcel(Date postingDate, Address postingAddress, Address receivingAddress, String status) {
-        this.setReceivingDate(postingDate);
+        this.setPostingDate(postingDate);
         this.setPostingAddress(postingAddress);
         this.setReceivingAddress(receivingAddress);
         this.setStatus(status);

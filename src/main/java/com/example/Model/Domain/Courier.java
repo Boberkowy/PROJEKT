@@ -16,7 +16,7 @@ public class Courier extends Person {
     protected Courier(){
 
     }
-    public Courier(String firstName, String lastName,String email, String phoneNumber,  String pesel, String username, String password){
+    public Courier(String firstName, String lastName,String email, String phoneNumber,  String pesel, String username, String password, Address address){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
@@ -24,6 +24,7 @@ public class Courier extends Person {
         this.setPesel(pesel);
         this.setUsername(username);
         this.setPassword(password);
+        this.setAddress(address);
     }
 
 

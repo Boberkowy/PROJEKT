@@ -63,7 +63,7 @@ public class ParcelController {
 
     addressRepository.save(postingAddress);
     addressRepository.save(receivingAddress);
-    Parcel parcel = new Parcel(date,postingAddress,receivingAddress, "Parcel Register to send");
+    Parcel parcel = new Parcel(date,postingAddress,receivingAddress, "Paczka przyjęta do wysłania");
 
     parcelRepository.save(parcel);
     return "redirect:/User/profile";

@@ -17,6 +17,7 @@ public class AddWorkerViewModel {
   private String zipcode;
   private String street;
   private String number;
+  private String pesel;
 
   public String getFirstName() {
     return firstName;
@@ -104,5 +105,13 @@ public class AddWorkerViewModel {
 
   public void setNumber(String number) {
     this.number = number;
+  }
+
+  public String getPesel() {
+    return pesel;
+  }
+
+  public void setPesel(String pesel) {
+    this.pesel = pesel;
   }
 }
