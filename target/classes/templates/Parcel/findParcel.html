@@ -15,13 +15,13 @@
   <nav class="ober-nav" role="navigation">
     <div class ="row">
       <div class = "col-xs-2">
-        <div id="ober-logo"><a href = "/" th:href="@{/}"><span>SKL</span></a></div>
+        <div id="ober-logo"><a href = "index.html" th:href="@{/}"><span>SKL</span></a></div>
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
-          <li><a href="">Nadaj paczkę</a></li>
-          <li><a href="">Znajdź paczkę</a></li>
-          <li><a href="">Panel uzytkownika</a></li>
+          <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
+          <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
+          <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
           <li class="btn-cta" id="regBtn"><a href ="/" th:href="@{/User/logout}"><span>Wyloguj</span></a></li>
         </ul>
       </div>
@@ -41,7 +41,6 @@
           <li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
               th:class="${#strings.toLowerCase(msg.type)}">
           </li>
-
         </ul>
       </div>
     </div>

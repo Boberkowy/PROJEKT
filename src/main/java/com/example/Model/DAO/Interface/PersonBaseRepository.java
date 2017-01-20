@@ -13,4 +13,6 @@ public interface PersonBaseRepository <T extends Person> extends CrudRepository<
     public T findByEmail(String email);
     @Query("select u from #{#entityName} as u where u.phoneNumber = ?1")
     public T findByPhoneNumber(String phoneNumber);
+   Person findByUsername (String username);
+
 }

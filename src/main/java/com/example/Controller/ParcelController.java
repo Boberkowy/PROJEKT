@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -41,6 +42,8 @@ public class ParcelController {
 
   @Autowired
   NotificationService notificationService;
+
+  private HttpSession httpSession;
 
   @RequestMapping(value = "Parcel/addParcel")
   public String addParcel(Model model){
@@ -71,10 +74,11 @@ public class ParcelController {
 
   @RequestMapping(value = "Parcel/findParcel")
   public String findParcel(Model model){
-    FindParcelViewModel findParcelViewModel = new FindParcelViewModel();
-    model.addAttribute("findParcel", findParcelViewModel);
-    return "Parcel/findParcel";
-  }
+
+      FindParcelViewModel findParcelViewModel = new FindParcelViewModel();
+      model.addAttribute("findParcel", findParcelViewModel);
+      return "Parcel/findParcel";
+    }
 
   @RequestMapping(value = "Parcel/findParcel", method = RequestMethod.POST)
   public String findParcel(@Valid FindParcelViewModel findParcelViewModel, BindingResult bindingResult,Model model){

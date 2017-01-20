@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -21,6 +22,8 @@ import javax.validation.Valid;
 public class HomeController {
 
   @Autowired
+  private HttpSession httpSession;
+  @Autowired
   private NotificationService notifyService;
 
   @Autowired
@@ -29,20 +32,28 @@ public class HomeController {
   @Autowired
   private PersonRepository personRepository;
 
-  @RequestMapping(value = "/" , method = RequestMethod.GET)
-    public String index(Model model){
-      LoginViewModel loginViewModel= new LoginViewModel();
-       model.addAttribute("login", loginViewModel);
+  @RequestMapping(value = "/", method = RequestMethod.GET)
+  public String index(Model model) {
+    LoginViewModel loginViewModel = new LoginViewModel();
+    model.addAttribute("login", loginViewModel);
+    return "index";
+  }
+
+  @RequestMapping(value = "/", method = RequestMethod.POST)
+  public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult, Model model) {
+    try {
+      if (userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository) == true) {
+        httpSession.setAttribute("login", loginViewModel.getUsername());
+        notifyService.addInfoMessage(null);
+        return "redirect:/User/profile";
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      model.addAttribute("login", loginViewModel);
+      notifyService.addErrorMessage("Login lub hasło niepoprawne");
       return "index";
     }
-
-    @RequestMapping(value ="/", method = RequestMethod.POST)
-      public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult){
-        if(userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository) == false){
-          return "/";
-        }
-        return "redirect:/User/profile";
-    }
-
+    return "index";
+  }
 
 }
