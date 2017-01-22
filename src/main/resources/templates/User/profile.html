@@ -23,28 +23,30 @@
           <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
           <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
           <li class="btn-cta" id="regBtn"><a href ="/" th:href="@{/User/logout}"><span>Wyloguj</span></a></li>
+
         </ul>
       </div>
     </div>
   </nav>
-      <div id="address">
-        <th:if test="${not empty lists}">
+    <div id="addressesDiv">
+      <table  class="table">
+        <tr class="active">
+          <th>City</th>
+          <th>House Number</th>
+          <th>region</th>
+          <th>street</th>
+          <th>zipcode</th>
+        </tr>
 
-          <ul>
-
-            <li th:each="item : ${adresy}">
-              <span th:text="${city}">Default</span>
-            </li>
-          </ul>
-
-        </th:if>
-
-
-      </div>
-
-
+            <tr class = "active" th:each="item : ${list}">
+              <td  th:text="*{item.city}"></td>
+              <td th:text="*{item.region}"></td>
+              <td th:text="*{item.street}"></td>
+              <td th:text="*{item.zipcode}"></td>
+            </tr>
+      </table>
 </div>
-
+</div>
 
 </body>
 </html>

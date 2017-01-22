@@ -92,3 +92,8 @@ body{
 #messages li{
   font-size: 30px;
 }
+
+#addressesDiv{
+  margin-top:300px;
+  margin-left: 100px;
+}

@@ -7,10 +7,7 @@ import com.example.Model.Domain.Address;
 import com.example.Model.Domain.Client;
 import com.example.Model.Domain.Parcel;
 import com.example.Model.Domain.Person;
-import com.example.Model.ViewModels.AddCourierViewModel;
-import com.example.Model.ViewModels.AddParcelViewModel;
-import com.example.Model.ViewModels.FindParcelViewModel;
-import com.example.Model.ViewModels.RegisterViewModel;
+import com.example.Model.ViewModels.*;
 import com.example.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,9 +44,17 @@ public class ParcelController {
 
   @RequestMapping(value = "Parcel/addParcel")
   public String addParcel(Model model){
-    AddParcelViewModel addParcelViewModel = new AddParcelViewModel();
-    model.addAttribute("addParcel", addParcelViewModel);
-    return "Parcel/addParcel";
+     try {
+       String username = httpSession.getAttribute("login").toString();
+       AddParcelViewModel addParcelViewModel = new AddParcelViewModel();
+       model.addAttribute("addParcel", addParcelViewModel);
+       return "Parcel/addParcel";
+     }catch(Exception e){
+       LoginViewModel loginViewModel = new LoginViewModel();
+       model.addAttribute("login", loginViewModel);
+       e.printStackTrace();
+       return "redirect:/";
+     }
   }
 
   @RequestMapping(value = "Parcel/addParcel", method = RequestMethod.POST)
@@ -75,10 +80,17 @@ public class ParcelController {
   @RequestMapping(value = "Parcel/findParcel")
   public String findParcel(Model model){
 
+      try{
+        String username = httpSession.getAttribute("login").toString();
       FindParcelViewModel findParcelViewModel = new FindParcelViewModel();
       model.addAttribute("findParcel", findParcelViewModel);
       return "Parcel/findParcel";
-    }
+    }catch(Exception e){
+      LoginViewModel loginViewModel = new LoginViewModel();
+      model.addAttribute("login", loginViewModel);
+      e.printStackTrace();
+      return "redirect:/";
+    }}
 
   @RequestMapping(value = "Parcel/findParcel", method = RequestMethod.POST)
   public String findParcel(@Valid FindParcelViewModel findParcelViewModel, BindingResult bindingResult,Model model){

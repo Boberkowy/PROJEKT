@@ -12,7 +12,7 @@ public class Client extends Person {
     @JoinTable(name = "client_address", joinColumns =
     @JoinColumn(name = "clientId"), inverseJoinColumns =
     @JoinColumn(name = "addressId"))
-    private Set<Address> addresses;
+    private List<Address> addresses;
 
     public Client(){}
 
@@ -31,7 +31,7 @@ public class Client extends Person {
         this.setPassword(password);
     }
 
-    public Client(String firstName, String lastName, String email, String phoneNumber, Set<Address> addresses, String username, String password){
+    public Client(String firstName, String lastName, String email, String phoneNumber, List<Address> addresses, String username, String password){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
@@ -41,11 +41,11 @@ public class Client extends Person {
         this.setAddresses(addresses);
     }
 
-    public Set<Address> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(Set<Address> addresses) {
+    public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
 }

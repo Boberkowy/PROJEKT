@@ -8,6 +8,7 @@ import com.example.Model.Domain.Courier;
 import com.example.Model.Domain.Parcel;
 import com.example.Model.ViewModels.AddCourierViewModel;
 import com.example.Model.ViewModels.AddWorkerViewModel;
+import com.example.Model.ViewModels.LoginViewModel;
 import com.example.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -36,15 +38,27 @@ public class WorkerController {
   @Autowired
   private NotificationService notifyService;
 
+  @Autowired
+  HttpSession httpSession;
+
   @RequestMapping(value = "Worker/addCourier")
   public String addCourier(Model model) {
-    AddCourierViewModel addCourierViewModel = new AddCourierViewModel();
-    model.addAttribute("addCourier", addCourierViewModel);
-    return "Worker/addCourier";
+    try {
+      String username = httpSession.getAttribute("login").toString();
+      AddCourierViewModel addCourierViewModel = new AddCourierViewModel();
+      model.addAttribute("addCourier", addCourierViewModel);
+      return "Worker/addCourier";
+    } catch (Exception e) {
+      LoginViewModel loginViewModel = new LoginViewModel();
+      model.addAttribute("login", loginViewModel);
+      e.printStackTrace();
+      return "redirect:/";
+    }
   }
 
   @RequestMapping(value = "Worker/addCourier", method = RequestMethod.POST)
   public String addCourier(@Valid AddCourierViewModel addCourierViewModel, BindingResult bindingResult, Model model){
+
     model.addAttribute("addCourier", addCourierViewModel);
     parcelRepository.setCourierForParcel(addCourierViewModel.getCourierId(),"Paczka przekazana Kurierowi do doręczenia", addCourierViewModel.getParcelId());
     notifyService.addInfoMessage("Kurier został dodany do paczki");
@@ -54,12 +68,19 @@ public class WorkerController {
 
 
   @RequestMapping(value = "Worker/addWorker")
-  public String addWorker(Model model){
-    AddWorkerViewModel addWorkerViewModel = new AddWorkerViewModel();
-    model.addAttribute("addWorker", addWorkerViewModel);
-    return "Worker/addWorker";
+  public String addWorker(Model model) {
+    try {
+      String username = httpSession.getAttribute("login").toString();
+      AddWorkerViewModel addWorkerViewModel = new AddWorkerViewModel();
+      model.addAttribute("addWorker", addWorkerViewModel);
+      return "Worker/addWorker";
+    } catch(Exception e) {
+      LoginViewModel loginViewModel = new LoginViewModel();
+      model.addAttribute("login", loginViewModel);
+      e.printStackTrace();
+      return "redirect:/";
+    }
   }
-
   @RequestMapping(value = "Worker/addWorker", method = RequestMethod.POST)
   public String addWorker(@Valid AddWorkerViewModel addWorkerViewModel, BindingResult bindingResult, Model model){
     model.addAttribute("addWorker", addWorkerViewModel);

@@ -19,6 +19,7 @@
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
+          <li><a href="../Address/addresses.html" th:href="${/Address/addresses}">Twoje adresy</a></li>
           <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
           <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
           <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
@@ -28,25 +29,24 @@
       </div>
     </div>
   </nav>
-    <div id="addressesDiv">
-      <table  class="table">
-        <tr class="active">
-          <th>City</th>
-          <th>House Number</th>
-          <th>region</th>
-          <th>street</th>
-          <th>zipcode</th>
-        </tr>
+  <table class="table active ">
+    <tr>
+      <th>City</th>
+      <th>House Number</th>
+      <th>region</th>
+      <th>street</th>
+      <th>zipcode</th>
 
-            <tr class = "active" th:each="item : ${list}">
-              <td  th:text="*{item.city}"></td>
-              <td th:text="*{item.region}"></td>
-              <td th:text="*{item.street}"></td>
-              <td th:text="*{item.zipcode}"></td>
-            </tr>
-      </table>
+    </tr>
+    <tr th:each="item : ${list}">
+      <td th:text="*{item.city}"></td>
+      <td th:text="*{item.region}"></td>
+      <td th:text="*{item.street}"></td>
+      <td th:text="*{item.zipcode}"></td>
+    </tr>
+  </table>
 </div>
-</div>
+
 
 </body>
 </html>

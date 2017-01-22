@@ -14,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Array;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -45,11 +47,13 @@ public class ProfileController {
 
   @RequestMapping(value = "User/profile")
   public String profile(Model model, ModelMap modelMap){
+
   try{
     String username = httpSession.getAttribute("login").toString();
     Client client = clientRepository.findByUsername(username);
-    Long idklienta = client.getId();
-    Set<Address> adresy = client.getAddresses();
+
+    List<Address> adresy = client.getAddresses();
+
     modelMap.addAttribute("list", adresy);
     return "User/profile";
   }
@@ -65,7 +69,7 @@ public class ProfileController {
 
   @RequestMapping(value = "User/logout" )
   public String logout(LoginViewModel loginViewModel, Model model){
-
+    httpSession.setAttribute("login", null);
     model.addAttribute("login", loginViewModel);
     notifyService.addErrorMessage(null);
     return "redirect:/";
