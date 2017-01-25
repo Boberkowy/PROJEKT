@@ -12,6 +12,7 @@ import com.example.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -93,13 +94,14 @@ public class WorkerController {
     return "Worker/addWorker";
   }
 
-  @RequestMapping(value= "Worker/parcelList")
-  public String parcelList(Model model){
+  @RequestMapping(value= "Worker/AddressesList")
+  public String parcelList(Model model,ModelMap modelMap){
     try {
       String username = httpSession.getAttribute("login").toString();
       Courier courier = courierRepository.findByUsername(username);
       List<Parcel> parcels = parcelRepository.findByCourierId(courier.getId());
-      return "Worker/addWorker";
+      modelMap.addAttribute("parcel", parcels);
+      return "Worker/AddressesList";
     } catch(Exception e) {
       LoginViewModel loginViewModel = new LoginViewModel();
       model.addAttribute("login", loginViewModel);

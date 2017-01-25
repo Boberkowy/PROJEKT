@@ -49,6 +49,7 @@ public class HomeController {
         Person person = personRepository.findByUsername(loginViewModel.getUsername());
         String role = person.getDtype();
         System.out.println(role);
+        httpSession.setAttribute("role", role);
         httpSession.setAttribute("login", loginViewModel.getUsername());
         System.out.println(httpSession.getAttribute("login"));
         notifyService.addInfoMessage(null);

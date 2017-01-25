@@ -54,11 +54,16 @@ public class ProfileController {
     try {
       String username = httpSession.getAttribute("login").toString();
       Client client = clientRepository.findByUsername(username);
+      try{
       List<Address> adresy = client.getAddresses();
-      modelMap.addAttribute("list", adresy);
-      return "User/profile";
-    } catch (Exception e) {
 
+        modelMap.addAttribute("list", adresy);
+        return "User/profile";}
+        catch(Exception e) {
+          e.printStackTrace();
+          return "User/profile";
+        }
+    } catch (Exception e) {
       LoginViewModel loginViewModel = new LoginViewModel();
       model.addAttribute("login", loginViewModel);
       e.printStackTrace();
@@ -77,6 +82,7 @@ public class ProfileController {
   @RequestMapping(value = "User/logout")
   public String logout(LoginViewModel loginViewModel, Model model) {
     httpSession.setAttribute("login", null);
+    httpSession.setAttribute("role", null);
     model.addAttribute("login", loginViewModel);
     notifyService.addErrorMessage(null);
     return "redirect:/";
