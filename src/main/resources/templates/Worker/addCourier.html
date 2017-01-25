@@ -17,8 +17,19 @@
       <div class = "col-xs-2">
         <div id="ober-logo"><a href = "index.html" th:href="@{/}"><span>SKL</span></a></div>
       </div>
-      <div class="col-xs-10 text-right menu-1">
+      <div th:if="${session.role} == 'Courier'" class="col-xs-10 text-right menu-1">
         <ul>
+          <li><a href="../Worker/addCourier.html" th:href="@{/Worker/addCourier}">Przypisz paczkę</a></li>
+          <li><a href="../Worker/addWorker.html" th:href="@{/Worker/addWorker}">Dodaj kuriera</a></li>
+          <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
+          <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
+          <li><a href="../Worker/AddressesList.html" th:href="@{/Worker/AddressesList}">Lista Twoich paczek</a></li>
+          <li class="btn-cta" id="regBtn"><a href ="/" th:href="@{/User/logout}"><span>Wyloguj</span></a></li>
+        </ul>
+      </div>
+      <div th:if="${session.role} == 'Client'" class="col-xs-10 text-right menu-1">
+        <ul>
+          <li><a href="addAddress.html" th:href="@{/User/addAddress}">Dodaj adres</a></li>
           <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
           <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
           <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
@@ -34,7 +45,7 @@
         <form class="form-block" id="ober-header-form" th:object="${addCourier}"  method="post">
           <input type = "text" class="form-control" name="courierId" placeholder="ID Kuriera" th:value="*{courierId}"/>
           <input type="text" class="form-control" name="parcelId" placeholder="ID Paczki" th:value="*{parcelId}"/>
-          <input type="submit" class="btn btn-success" name="submit" value="Przypisz kuriera" id="addParcelBtn"/>
+          <input type="submit" class="btn btn-success" name="submit" value="Przypisz paczkę" id="addParcelBtn"/>
         </form>
 
       </div>
