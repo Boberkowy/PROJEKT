@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.List;
@@ -68,6 +69,31 @@ public class ProfileController {
     }
   }
 
+  @RequestMapping(value="Address/addresses")
+  public String addAddress(){
+    return "Address/addresses";
+  }
+
+  @RequestMapping(value = "Address/addresses", method = RequestMethod.POST)
+  public String addAddress(@Valid AddressessViewModel addressessViewModel, Model model){
+
+    try{
+      String username = httpSession.getAttribute("login").toString();
+      Client client = clientRepository.findByUsername(username);
+      Address address = new Address(addressessViewModel.getRegion(),addressessViewModel.getCity(),addressessViewModel.getZipcode(),addressessViewModel.getStreet(),addressessViewModel.getHouseNumber());
+      addressRepository.save(address);
+      client.addAddress(address);
+      clientRepository.save(client);
+      return "User/profile";
+    }
+    catch (Exception e){
+
+      LoginViewModel loginViewModel = new LoginViewModel();
+      model.addAttribute("login", loginViewModel);
+      e.printStackTrace();
+      return "redirect:/";
+    }
+  }
 
   @RequestMapping(value = "User/logout" )
   public String logout(LoginViewModel loginViewModel, Model model){
@@ -77,17 +103,6 @@ public class ProfileController {
     return "redirect:/";
   }
 
-  @RequestMapping(value="User/addAddress")
-  public String addAddress(AddressessViewModel addressessViewModel,Model model) {
-    try {
-      String username = httpSession.getAttribute("login").toString();
-      model.addAttribute("addAddress", addressessViewModel);
-      return "User/addAddress";
-    } catch (Exception e) {
-      e.printStackTrace();
-      return "redirect:/";
-    }
-  }
 
   @RequestMapping(value="User/addAddress", method = RequestMethod.POST)
   public String addAddress(AddressessViewModel addressessViewModel, BindingResult bindingResult, Model model){

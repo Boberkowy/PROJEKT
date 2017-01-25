@@ -1,6 +1,7 @@
 package com.example.Controller;
 
 import com.example.Model.DAO.Interface.AddressRepository;
+import com.example.Model.DAO.Interface.ClientRepository;
 import com.example.Model.DAO.Interface.ParcelRepository;
 import com.example.Model.DAO.Interface.PersonRepository;
 import com.example.Model.Domain.Address;
@@ -32,7 +33,7 @@ public class ParcelController {
   ParcelRepository parcelRepository;
 
   @Autowired
-  PersonRepository personRepository;
+  ClientRepository clientRepository;
 
   @Autowired
   AddressRepository addressRepository;
@@ -64,6 +65,8 @@ public class ParcelController {
 //      notifyService.addErrorMessage("Wypełnij formularz poprawnie");
 //      return "User/register";
 //    }
+    String username = httpSession.getAttribute("login").toString();
+    Client client = clientRepository.findByUsername(username);
     LocalDate localDate = LocalDate.now();
     Date date  = Date.valueOf(localDate);
     Address postingAddress = new Address(addParcelViewModel.getPostingRegion(), addParcelViewModel.getPostingCity(), addParcelViewModel.getPostingZipcode(), addParcelViewModel.getPostingStreet(), addParcelViewModel.getPostingNumber());
@@ -71,7 +74,7 @@ public class ParcelController {
 
     addressRepository.save(postingAddress);
     addressRepository.save(receivingAddress);
-    Parcel parcel = new Parcel(date,postingAddress,receivingAddress, "Paczka przyjęta do wysłania");
+    Parcel parcel = new Parcel(client,date,postingAddress,receivingAddress, "Paczka przyjęta do wysłania");
 
     parcelRepository.save(parcel);
     return "redirect:/User/profile";

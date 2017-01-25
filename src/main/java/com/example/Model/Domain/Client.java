@@ -48,4 +48,7 @@ public class Client extends Person {
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
+    public void addAddress(Address address){
+        this.getAddresses().add(address);
+    }
 }

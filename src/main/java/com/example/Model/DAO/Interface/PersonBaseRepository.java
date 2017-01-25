@@ -12,10 +12,12 @@ public interface PersonBaseRepository <T extends Person> extends CrudRepository<
 
   @Query("select u from #{#entityName} as u where u.firstName = ?1 AND u.lastName =?2")
     public T findByFirstNameAndLastName(String firstName, String lastName);
-    @Query("select u from #{#entityName} as u where u.email = ?1")
     public T findByEmail(String email);
-    @Query("select u from #{#entityName} as u where u.phoneNumber = ?1")
     public T findByPhoneNumber(String phoneNumber);
+<<<<<<< HEAD
     Person findByUsername (String username);
+=======
+   T findByUsername (String username);
+>>>>>>> 032ba66376ae28a3d0d2c784324e177e0c406758
 
 }

@@ -12,9 +12,7 @@ import java.util.Date;
 import java.util.List;
 @Transactional
 public interface ParcelRepository extends CrudRepository<Parcel, Long> {
-    List<Parcel> findByPostingDate(Date date);
-    List<Parcel> findByReceivingAddress(Address address);
-    List<Parcel> findByPostingAddress(Address address);
+    List<Parcel> findByCourierId(long courierId);
 
     @Modifying
     @Transactional
