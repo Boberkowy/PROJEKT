@@ -49,44 +49,17 @@ public class ProfileController {
   HttpSession httpSession;
 
   @RequestMapping(value = "User/profile")
-  public String profile(Model model, ModelMap modelMap){
+  public String profile(Model model, ModelMap modelMap) {
 
-  try{
-    String username = httpSession.getAttribute("login").toString();
-    Client client = clientRepository.findByUsername(username);
-
-    List<Address> adresy = client.getAddresses();
-
-    modelMap.addAttribute("list", adresy);
-    return "User/profile";
-  }
-    catch (Exception e){
-
-    LoginViewModel loginViewModel = new LoginViewModel();
-    model.addAttribute("login", loginViewModel);
-    e.printStackTrace();
-    return "redirect:/";
-    }
-  }
-
-  @RequestMapping(value="Address/addresses")
-  public String addAddress(){
-    return "Address/addresses";
-  }
-
-  @RequestMapping(value = "Address/addresses", method = RequestMethod.POST)
-  public String addAddress(@Valid AddressessViewModel addressessViewModel, Model model){
-
-    try{
+    try {
       String username = httpSession.getAttribute("login").toString();
       Client client = clientRepository.findByUsername(username);
-      Address address = new Address(addressessViewModel.getRegion(),addressessViewModel.getCity(),addressessViewModel.getZipcode(),addressessViewModel.getStreet(),addressessViewModel.getHouseNumber());
-      addressRepository.save(address);
-      client.addAddress(address);
-      clientRepository.save(client);
+
+      List<Address> adresy = client.getAddresses();
+
+      modelMap.addAttribute("list", adresy);
       return "User/profile";
-    }
-    catch (Exception e){
+    } catch (Exception e) {
 
       LoginViewModel loginViewModel = new LoginViewModel();
       model.addAttribute("login", loginViewModel);
@@ -95,23 +68,56 @@ public class ProfileController {
     }
   }
 
-  @RequestMapping(value = "User/logout" )
-  public String logout(LoginViewModel loginViewModel, Model model){
+  @RequestMapping(value = "Address/addresses")
+  public String addAddress(Model model) {
+    AddressessViewModel addressessViewModel = new AddressessViewModel();
+    model.addAttribute("address", addressessViewModel);
+    return "Address/addresses";
+  }
+
+
+  @RequestMapping(value = "User/logout")
+  public String logout(LoginViewModel loginViewModel, Model model) {
     httpSession.setAttribute("login", null);
     model.addAttribute("login", loginViewModel);
     notifyService.addErrorMessage(null);
     return "redirect:/";
   }
 
-
-  @RequestMapping(value="User/addAddress", method = RequestMethod.POST)
-  public String addAddress(AddressessViewModel addressessViewModel, BindingResult bindingResult, Model model){
+  @RequestMapping(value = "User/addAddress")
+  public String addAddress(AddressessViewModel addressessViewModel, Model model) {
+  try {
     String username = httpSession.getAttribute("login").toString();
-    model.addAttribute("addAddress",addressessViewModel);
-    String id = personRepository.findById(username).toString();
-    Address address = new Address(addressessViewModel.getRegion(),addressessViewModel.getCity(),addressessViewModel.getZipcode(),addressessViewModel.getStreet(),addressessViewModel.getHouseNumber());
-    addressRepository.save(address);
-    return "redirect: User/Profile";
+    model.addAttribute("addAddress", addressessViewModel);
+//    String id = personRepository.findById(username).toString();
+//    Address address = new Address(addressessViewModel.getRegion(), addressessViewModel.getCity(), addressessViewModel.getZipcode(), addressessViewModel.getStreet(), addressessViewModel.getHouseNumber());
+//    addressRepository.save(address);
+      return "User/addAddress";
+  }catch(Exception e){
+    e.printStackTrace();
+    LoginViewModel loginViewModel = new LoginViewModel();
+    model.addAttribute("login", loginViewModel);
+    return "redirect:/";
+  }
+  }
+
+  @RequestMapping(value = "User/addAddress", method = RequestMethod.POST)
+  public String addAddress(AddressessViewModel addressessViewModel, BindingResult bindingResult, Model model) {
+    try {
+      String username = httpSession.getAttribute("login").toString();
+      Client client = clientRepository.findByUsername(username);
+      Address address = new Address(addressessViewModel.getRegion(), addressessViewModel.getCity(), addressessViewModel.getZipcode(), addressessViewModel.getStreet(), addressessViewModel.getHouseNumber());
+      addressRepository.save(address);
+      client.addAddress(address);
+      clientRepository.save(client);
+      return "User/profile";
+    } catch (Exception e) {
+
+      LoginViewModel loginViewModel = new LoginViewModel();
+      model.addAttribute("login", loginViewModel);
+      e.printStackTrace();
+      return "redirect:/";
+    }
   }
 }
 
