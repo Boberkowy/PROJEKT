@@ -14,7 +14,8 @@ public abstract class Person {
     private String password;
     private String email;
     private String phoneNumber;
-    private String dtype;
+    @Column(insertable = false, updatable = false)
+    private String DTYPE;
     public Person(){}
 
     public long getId() {
@@ -74,7 +75,7 @@ public abstract class Person {
     }
 
      public String getDtype() {
-    return dtype;
+    return DTYPE;
   }
 
 }

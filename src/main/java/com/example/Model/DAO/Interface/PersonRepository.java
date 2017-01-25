@@ -8,8 +8,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface PersonRepository extends PersonBaseRepository<Person> {
 
-  @Modifying
-  @Transactional
-  @Query("SELECT 'dtype' FROM Person where username =?1")
-  String findRole(String username);
 }
