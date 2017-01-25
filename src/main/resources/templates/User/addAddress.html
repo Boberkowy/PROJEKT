@@ -18,6 +18,7 @@
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
+          <li><a href="addAddress.html" th:href="@{/User/addAddress}">Dodaj adres</a></li>
           <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
           <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
           <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
@@ -29,14 +30,14 @@
   <header id="ober-header" class="ober-cover">
     <div class = "container">
       <div class = "col-md 8 col-md-offset-2 textcenter">
-        <p id="chuj">Dodaj paczkę</p>
+        <p id="chuj">Dodaj adres</p>
         <form class="form-block" id="ober-header-form" th:object="${addAddress}"  method="post" >
           <input type="text" class="form-control" name="region" placeholder="Województwo " th:value="*{region}"/>
           <input type="text" class="form-control" name="city"   placeholder="Miasto " th:value="*{city}"/>
           <input type="text" class="form-control" name="zipcode" placeholder="Kod pocztowy  " th:value="*{zipcode}"/>
           <input type="text" class="form-control" name="street" placeholder="Ulica " th:value="*{street}"/>
           <input type="text" class="form-control" name="houseNumber" placeholder="Numer "    th:value="*{houseNumber}"/>
-          <input type="submit" class="btn btn-success" name="submit" value="Nadaj paczkę" id="addParcelBtn"/>
+          <input type="submit" class="btn btn-success" name="submit" value="Dodaj adres" id="addParcelBtn"/>
         </form>
 
 
