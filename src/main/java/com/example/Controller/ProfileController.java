@@ -103,11 +103,12 @@ public class ProfileController {
     try {
       String username = httpSession.getAttribute("login").toString();
       Client client = clientRepository.findByUsername(username);
+      System.out.println("region: " + addressessViewModel.getRegion());
       Address address = new Address(addressessViewModel.getRegion(), addressessViewModel.getCity(), addressessViewModel.getZipcode(), addressessViewModel.getStreet(), addressessViewModel.getHouseNumber());
       addressRepository.save(address);
       client.addAddress(address);
       clientRepository.save(client);
-      return "User/profile";
+      return "redirect:/User/profile";
     } catch (Exception e) {
 
       LoginViewModel loginViewModel = new LoginViewModel();
