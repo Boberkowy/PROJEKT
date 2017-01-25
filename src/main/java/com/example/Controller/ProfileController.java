@@ -89,9 +89,6 @@ public class ProfileController {
   try {
     String username = httpSession.getAttribute("login").toString();
     model.addAttribute("addAddress", addressessViewModel);
-//    String id = personRepository.findById(username).toString();
-//    Address address = new Address(addressessViewModel.getRegion(), addressessViewModel.getCity(), addressessViewModel.getZipcode(), addressessViewModel.getStreet(), addressessViewModel.getHouseNumber());
-//    addressRepository.save(address);
       return "User/addAddress";
   }catch(Exception e){
     e.printStackTrace();
@@ -102,7 +99,7 @@ public class ProfileController {
   }
 
   @RequestMapping(value = "User/addAddress", method = RequestMethod.POST)
-  public String addAddress(AddressessViewModel addressessViewModel, BindingResult bindingResult, Model model) {
+  public String addAddress(@Valid AddressessViewModel addressessViewModel, BindingResult bindingResult, Model model) {
     try {
       String username = httpSession.getAttribute("login").toString();
       Client client = clientRepository.findByUsername(username);

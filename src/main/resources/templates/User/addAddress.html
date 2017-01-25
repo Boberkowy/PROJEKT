@@ -32,11 +32,11 @@
         <p id="chuj">Nadaj paczkę</p>
         <form class="form-block" id="ober-header-form" th:object="${addAddress}"  method="post" >
           <h1>Dodaj adres</h1>
-          <input type="text" class="form-control" name="receivingRegion" placeholder="Województwo " th:value="*{region}"/>
-          <input type="text" class="form-control" name="receivingCity"   placeholder="Miasto " th:value="*{city}"/>
-          <input type="text" class="form-control" name="receivingZipcode" placeholder="Kod pocztowy  " th:value="*{zipcode}"/>
-          <input type="text" class="form-control" name="receivingStreet" placeholder="Ulica " th:value="*{street}"/>
-          <input type="text" class="form-control" name="receivingNumber" placeholder="Numer "    th:value="*{houseNumber}"/>
+          <input type="text" class="form-control" name="Region" placeholder="Województwo " th:value="*{region}"/>
+          <input type="text" class="form-control" name="City"   placeholder="Miasto " th:value="*{city}"/>
+          <input type="text" class="form-control" name="Zipcode" placeholder="Kod pocztowy  " th:value="*{zipcode}"/>
+          <input type="text" class="form-control" name="Street" placeholder="Ulica " th:value="*{street}"/>
+          <input type="text" class="form-control" name="houseNumber" placeholder="Numer "    th:value="*{houseNumber}"/>
           <input type="submit" class="btn btn-success" name="submit" value="Nadaj paczkę" id="addParcelBtn"/>
         </form>
 

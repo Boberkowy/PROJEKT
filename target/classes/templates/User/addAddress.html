@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title>System Kuriersko - Logistyczny </title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+  <script type="application/javascript" src="scripts/jquery-3.1.1.js"></script>
+  <script type="application/javascript" src="scripts/jquery-ui.js"></script>
+  <script type="application/javascript" src="scripts/scripts.js"></script>
 </head>
-<body>
 
+<body style="background-image:url(/images/bg.jpg)">
+<div id="page">
+  <nav class="ober-nav" role="navigation">
+    <div class ="row">
+      <div class = "col-xs-2">
+        <div id="ober-logo"><a href = "index.html" th:href="@{/}"><span>SKL</span></a></div>
+      </div>
+      <div class="col-xs-10 text-right menu-1">
+        <ul>
+          <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
+          <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
+          <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
+          <li class="btn-cta" id="regBtn"><a href ="/" th:href="@{/User/logout}"><span>Wyloguj</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header id="ober-header" class="ober-cover">
+    <div class = "container">
+      <div class = "col-md 8 col-md-offset-2 textcenter">
+        <p id="chuj">Nadaj paczkę</p>
+        <form class="form-block" id="ober-header-form" th:object="${addAddress}"  method="post" >
+          <h1>Dodaj adres</h1>
+          <input type="text" class="form-control" name="Region" placeholder="Województwo " th:value="*{region}"/>
+          <input type="text" class="form-control" name="City"   placeholder="Miasto " th:value="*{city}"/>
+          <input type="text" class="form-control" name="Zipcode" placeholder="Kod pocztowy  " th:value="*{zipcode}"/>
+          <input type="text" class="form-control" name="Street" placeholder="Ulica " th:value="*{street}"/>
+          <input type="text" class="form-control" name="houseNumber" placeholder="Numer "    th:value="*{houseNumber}"/>
+          <input type="submit" class="btn btn-success" name="submit" value="Nadaj paczkę" id="addParcelBtn"/>
+        </form>
+
+
+      </div>
+    </div>
+  </header>
+</div>
 </body>
 </html>
