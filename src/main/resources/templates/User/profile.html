@@ -19,6 +19,7 @@
       </div>
       <div class="col-xs-10 text-right menu-1">
         <ul>
+          <li><a href="addAddress.html" th:href="@{/User/addAddress}">Dodaj adres</a></li>
           <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
           <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
           <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
@@ -31,19 +32,22 @@
     <div id="addressesDiv">
       <table  class="table">
         <tr class="active">
+
+          <th>Street</th>
+          <th>House number</th>
+          <th>Zip Code</th>
           <th>City</th>
-          <th>House Number</th>
-          <th>region</th>
-          <th>street</th>
-          <th>zipcode</th>
+          <th>Region</th>
+
         </tr>
 
             <tr class = "active" th:each="item : ${list}">
-              <td  th:text="*{item.city}"></td>
-              <td  th:text="*{item.number}"></td>
-              <td th:text="*{item.region}"></td>
               <td th:text="*{item.street}"></td>
+              <td th:text="*{item.number}"></td>
               <td th:text="*{item.zipcode}"></td>
+              <td  th:text="*{item.city}"></td>
+              <td th:text="*{item.region}"></td>
+
             </tr>
       </table>
 </div>

@@ -54,9 +54,7 @@ public class ProfileController {
     try {
       String username = httpSession.getAttribute("login").toString();
       Client client = clientRepository.findByUsername(username);
-
       List<Address> adresy = client.getAddresses();
-
       modelMap.addAttribute("list", adresy);
       return "User/profile";
     } catch (Exception e) {

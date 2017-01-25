@@ -41,6 +41,7 @@ public class ParcelController {
   @Autowired
   NotificationService notificationService;
 
+  @Autowired
   private HttpSession httpSession;
 
   @RequestMapping(value = "Parcel/addParcel")
@@ -48,8 +49,8 @@ public class ParcelController {
       try {
         String username = httpSession.getAttribute("login").toString();
         AddParcelViewModel addParcelViewModel = new AddParcelViewModel();
-        model.addAttribute("addCourier", addParcelViewModel);
-        return "Worker/addCourier";
+        model.addAttribute("addParcel", addParcelViewModel);
+        return "Parcel/addParcel";
         } catch (Exception e) {
         AddParcelViewModel addParcelViewModel= new AddParcelViewModel();
         model.addAttribute("login", addParcelViewModel);
