@@ -44,6 +44,7 @@ public class HomeController {
     try {
       if (userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository) == true) {
         httpSession.setAttribute("login", loginViewModel.getUsername());
+        System.out.println(httpSession.getAttribute("login"));
         notifyService.addInfoMessage(null);
         return "redirect:/User/profile";
       }

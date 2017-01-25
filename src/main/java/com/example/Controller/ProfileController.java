@@ -9,10 +9,12 @@ import com.example.Model.ViewModels.AddressessViewModel;
 import com.example.Model.ViewModels.LoginViewModel;
 import com.example.Model.ViewModels.RegisterViewModel;
 import com.example.services.NotificationService;
+import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -75,4 +77,26 @@ public class ProfileController {
     return "redirect:/";
   }
 
+  @RequestMapping(value="User/addAddress")
+  public String addAddress(AddressessViewModel addressessViewModel,Model model) {
+    try {
+      String username = httpSession.getAttribute("login").toString();
+      model.addAttribute("addAddress", addressessViewModel);
+      return "User/addAddress";
+    } catch (Exception e) {
+      e.printStackTrace();
+      return "redirect:/";
+    }
+  }
+
+  @RequestMapping(value="User/addAddress", method = RequestMethod.POST)
+  public String addAddress(AddressessViewModel addressessViewModel, BindingResult bindingResult, Model model){
+    String username = httpSession.getAttribute("login").toString();
+    model.addAttribute("addAddress",addressessViewModel);
+    String id = personRepository.findById(username).toString();
+    Address address = new Address(addressessViewModel.getRegion(),addressessViewModel.getCity(),addressessViewModel.getZipcode(),addressessViewModel.getStreet(),addressessViewModel.getHouseNumber());
+    addressRepository.save(address);
+    return "redirect: User/Profile";
+  }
 }
+

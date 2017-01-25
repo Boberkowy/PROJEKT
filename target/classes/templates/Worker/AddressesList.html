@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"></meta>
+  <title>System Kuriersko - Logistyczny </title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+  <script type="application/javascript" src="scripts/jquery-3.1.1.js"></script>
+  <script type="application/javascript" src="scripts/jquery-ui.js"></script>
+  <script type="application/javascript" src="scripts/scripts.js"></script>
+</head>
+
+<body style="background-image:url(/images/bg.jpg)">
+<div id="page">
+  <nav class="ober-nav" role="navigation">
+    <div class ="row">
+      <div class = "col-xs-2">
+        <div id="ober-logo"><a href = "index.html" th:href="@{/}"><span>SKL</span></a></div>
+      </div>
+      <div class="col-xs-10 text-right menu-1">
+        <ul>
+          <li><a href="../Parcel/addParcel.html" th:href="@{/Parcel/addParcel}">Nadaj paczkę</a></li>
+          <li><a href="../Parcel/findParcel.html" th:href="@{/Parcel/findParcel}">Znajdź paczkę</a></li>
+          <li><a href="../User/profile.html" th:href="@{/User/profile}">Panel uzytkownika</a></li>
+          <li class="btn-cta" id="regBtn"><a href ="/" th:href="@{/User/logout}"><span>Wyloguj</span></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="addressesDiv">
+    <table  class="table">
+      <tr class="active">
+        <th>City</th>
+        <th>House Number</th>
+        <th>region</th>
+        <th>street</th>
+        <th>zipcode</th>
+      </tr>
+
+      <tr class = "active" th:each="item : ${list}">
+        <td  th:text="*{item.city}"></td>
+        <td th:text="*{item.region}"></td>
+        <td th:text="*{item.street}"></td>
+        <td th:text="*{item.zipcode}"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

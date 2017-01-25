@@ -43,19 +43,19 @@ public class ParcelController {
   private HttpSession httpSession;
 
   @RequestMapping(value = "Parcel/addParcel")
-  public String addParcel(Model model){
-     try {
-       String username = httpSession.getAttribute("login").toString();
-       AddParcelViewModel addParcelViewModel = new AddParcelViewModel();
-       model.addAttribute("addParcel", addParcelViewModel);
-       return "Parcel/addParcel";
-     }catch(Exception e){
-       LoginViewModel loginViewModel = new LoginViewModel();
-       model.addAttribute("login", loginViewModel);
-       e.printStackTrace();
-       return "redirect:/";
-     }
-  }
+  public String addParcel(Model model) {
+      try {
+        String username = httpSession.getAttribute("login").toString();
+        AddParcelViewModel addParcelViewModel = new AddParcelViewModel();
+        model.addAttribute("addCourier", addParcelViewModel);
+        return "Worker/addCourier";
+      } catch (Exception e) {
+        AddParcelViewModel addParcelViewModel= new AddParcelViewModel();
+        model.addAttribute("login", addParcelViewModel);
+        e.printStackTrace();
+        return "redirect:/";
+      }
+    }
 
   @RequestMapping(value = "Parcel/addParcel", method = RequestMethod.POST)
   public String registerPage(@Valid AddParcelViewModel addParcelViewModel, BindingResult bindingResult){
@@ -79,18 +79,19 @@ public class ParcelController {
 
   @RequestMapping(value = "Parcel/findParcel")
   public String findParcel(Model model){
-
+      String username = httpSession.getAttribute("login").toString();
       try{
-        String username = httpSession.getAttribute("login").toString();
+        if(username != null){
       FindParcelViewModel findParcelViewModel = new FindParcelViewModel();
       model.addAttribute("findParcel", findParcelViewModel);
-      return "Parcel/findParcel";
+      return "Parcel/findParcel";}
     }catch(Exception e){
       LoginViewModel loginViewModel = new LoginViewModel();
       model.addAttribute("login", loginViewModel);
       e.printStackTrace();
       return "redirect:/";
-    }}
+    }return "redirect:/";
+  }
 
   @RequestMapping(value = "Parcel/findParcel", method = RequestMethod.POST)
   public String findParcel(@Valid FindParcelViewModel findParcelViewModel, BindingResult bindingResult,Model model){

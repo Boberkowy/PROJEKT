@@ -70,7 +70,8 @@ public class WorkerController {
   @RequestMapping(value = "Worker/addWorker")
   public String addWorker(Model model) {
     try {
-      String username = httpSession.getAttribute("login").toString();
+        String username = httpSession.getAttribute("login").toString();
+      System.out.println("sesja w  worker/addworker : " + username);
       AddWorkerViewModel addWorkerViewModel = new AddWorkerViewModel();
       model.addAttribute("addWorker", addWorkerViewModel);
       return "Worker/addWorker";
