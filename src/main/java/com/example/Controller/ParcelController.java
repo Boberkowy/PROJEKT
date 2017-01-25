@@ -50,7 +50,7 @@ public class ParcelController {
         AddParcelViewModel addParcelViewModel = new AddParcelViewModel();
         model.addAttribute("addCourier", addParcelViewModel);
         return "Worker/addCourier";
-      } catch (Exception e) {
+        } catch (Exception e) {
         AddParcelViewModel addParcelViewModel= new AddParcelViewModel();
         model.addAttribute("login", addParcelViewModel);
         e.printStackTrace();
@@ -82,19 +82,11 @@ public class ParcelController {
 
   @RequestMapping(value = "Parcel/findParcel")
   public String findParcel(Model model){
-      String username = httpSession.getAttribute("login").toString();
-      try{
-        if(username != null){
       FindParcelViewModel findParcelViewModel = new FindParcelViewModel();
       model.addAttribute("findParcel", findParcelViewModel);
-      return "Parcel/findParcel";}
-    }catch(Exception e){
-      LoginViewModel loginViewModel = new LoginViewModel();
-      model.addAttribute("login", loginViewModel);
-      e.printStackTrace();
-      return "redirect:/";
-    }return "redirect:/";
+      return "Parcel/findParcel";
   }
+
 
   @RequestMapping(value = "Parcel/findParcel", method = RequestMethod.POST)
   public String findParcel(@Valid FindParcelViewModel findParcelViewModel, BindingResult bindingResult,Model model){

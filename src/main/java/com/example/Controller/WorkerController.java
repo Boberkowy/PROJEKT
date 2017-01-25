@@ -59,11 +59,9 @@ public class WorkerController {
 
   @RequestMapping(value = "Worker/addCourier", method = RequestMethod.POST)
   public String addCourier(@Valid AddCourierViewModel addCourierViewModel, BindingResult bindingResult, Model model){
-
     model.addAttribute("addCourier", addCourierViewModel);
     parcelRepository.setCourierForParcel(addCourierViewModel.getCourierId(),"Paczka przekazana Kurierowi do doręczenia", addCourierViewModel.getParcelId());
     notifyService.addInfoMessage("Kurier został dodany do paczki");
-
     return "Worker/addCourier";
   }
 

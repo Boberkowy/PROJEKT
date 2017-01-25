@@ -29,14 +29,13 @@
   <header id="ober-header" class="ober-cover">
     <div class = "container">
       <div class = "col-md 8 col-md-offset-2 textcenter">
-        <p id="chuj">Nadaj paczkę</p>
+        <p id="chuj">Dodaj paczkę</p>
         <form class="form-block" id="ober-header-form" th:object="${addAddress}"  method="post" >
-          <h1>Dodaj adres</h1>
-          <input type="text" class="form-control" name="receivingRegion" placeholder="Województwo " th:value="*{region}"/>
-          <input type="text" class="form-control" name="receivingCity"   placeholder="Miasto " th:value="*{city}"/>
-          <input type="text" class="form-control" name="receivingZipcode" placeholder="Kod pocztowy  " th:value="*{zipcode}"/>
-          <input type="text" class="form-control" name="receivingStreet" placeholder="Ulica " th:value="*{street}"/>
-          <input type="text" class="form-control" name="receivingNumber" placeholder="Numer "    th:value="*{houseNumber}"/>
+          <input type="text" class="form-control" name="region" placeholder="Województwo " th:value="*{region}"/>
+          <input type="text" class="form-control" name="city"   placeholder="Miasto " th:value="*{city}"/>
+          <input type="text" class="form-control" name="zipcode" placeholder="Kod pocztowy  " th:value="*{zipcode}"/>
+          <input type="text" class="form-control" name="street" placeholder="Ulica " th:value="*{street}"/>
+          <input type="text" class="form-control" name="houseNumber" placeholder="Numer "    th:value="*{houseNumber}"/>
           <input type="submit" class="btn btn-success" name="submit" value="Nadaj paczkę" id="addParcelBtn"/>
         </form>
 
