@@ -3,9 +3,8 @@ package com.example.Controller;
 import com.example.Model.DAO.Interface.AddressRepository;
 import com.example.Model.DAO.Interface.CourierRepository;
 import com.example.Model.DAO.Interface.ParcelRepository;
-import com.example.Model.Domain.Address;
-import com.example.Model.Domain.Courier;
-import com.example.Model.Domain.Parcel;
+import com.example.Model.DAO.Interface.PersonRepository;
+import com.example.Model.Domain.*;
 import com.example.Model.ViewModels.AddCourierViewModel;
 import com.example.Model.ViewModels.AddWorkerViewModel;
 import com.example.Model.ViewModels.LoginViewModel;
@@ -19,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Boberkowy on 17.01.2017.
@@ -91,6 +92,21 @@ public class WorkerController {
     notifyService.addInfoMessage("Kurier został dodany do systemu.");
 
     return "Worker/addWorker";
+  }
+
+  @RequestMapping(value= "Worker/parcelList")
+  public String parcelList(Model model){
+    try {
+      String username = httpSession.getAttribute("login").toString();
+      Courier courier = courierRepository.findByUsername(username);
+      List<Parcel> parcels = parcelRepository.findByCourierId(courier.getId());
+      return "Worker/addWorker";
+    } catch(Exception e) {
+      LoginViewModel loginViewModel = new LoginViewModel();
+      model.addAttribute("login", loginViewModel);
+      e.printStackTrace();
+      return "redirect:/";
+    }
   }
 }
 
