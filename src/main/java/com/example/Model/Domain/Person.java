@@ -14,7 +14,7 @@ public abstract class Person {
     private String password;
     private String email;
     private String phoneNumber;
-
+    private String dtype;
     public Person(){}
 
     public long getId() {
@@ -72,4 +72,9 @@ public abstract class Person {
     protected void setUsername(String username) {
         this.username = username;
     }
+
+     public String getDtype() {
+    return dtype;
+  }
+
 }
