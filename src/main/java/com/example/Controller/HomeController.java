@@ -1,6 +1,8 @@
 package com.example.Controller;
 
+import com.example.Model.DAO.Interface.PersonBaseRepository;
 import com.example.Model.DAO.Interface.PersonRepository;
+import com.example.Model.Domain.Person;
 import com.example.Model.ViewModels.LoginViewModel;
 import com.example.services.NotificationService;
 import com.example.services.UserService;
@@ -43,6 +45,10 @@ public class HomeController {
   public String loginPage(@Valid LoginViewModel loginViewModel, BindingResult bindingResult, Model model) {
     try {
       if (userService.checkLogin(loginViewModel.getUsername(), loginViewModel.getPassword(), personRepository) == true) {
+        System.out.println("dochodze do pobierania roli");
+        Person person = personRepository.findByUsername(loginViewModel.getUsername());
+        String role = person.getDtype();
+        System.out.println(role);
         httpSession.setAttribute("login", loginViewModel.getUsername());
         System.out.println(httpSession.getAttribute("login"));
         notifyService.addInfoMessage(null);
