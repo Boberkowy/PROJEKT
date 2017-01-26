@@ -9,6 +9,7 @@ D:\Studia\Pro\PROJEKT\src\main\java\com\example\Model\DAO\Interface\ClientReposi
 D:\Studia\Pro\PROJEKT\src\main\java\com\example\Model\Domain\Address.java
 D:\Studia\Pro\PROJEKT\src\main\java\com\example\Controller\ProfileController.java
 D:\Studia\Pro\PROJEKT\src\main\java\com\example\Model\ViewModels\AddressessViewModel.java
+D:\Studia\Pro\PROJEKT\src\main\java\com\example\Model\ViewModels\ParcelListViewModel.java
 D:\Studia\Pro\PROJEKT\src\main\java\com\example\Controller\RegisterController.java
 D:\Studia\Pro\PROJEKT\src\main\java\com\example\services\NotificationService.java
 D:\Studia\Pro\PROJEKT\src\main\java\com\example\Model\Domain\Parcel.java

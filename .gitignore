@@ -7,3 +7,5 @@ target/generated-sources/
 target/generated-test-sources/
 target/surefire-reports/
 target/test-classes/com/example/ExampleTests.class
+
+!/src/test/java/com/example/ExampleTests.java
