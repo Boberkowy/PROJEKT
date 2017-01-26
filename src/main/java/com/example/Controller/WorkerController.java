@@ -100,7 +100,12 @@ public class WorkerController {
       String username = httpSession.getAttribute("login").toString();
       Courier courier = courierRepository.findByUsername(username);
       List<Parcel> parcels = parcelRepository.findByCourierId(courier.getId());
-      modelMap.addAttribute("parcel", parcels);
+      List<Address> addresses = new ArrayList<>();
+      parcels.forEach(p -> {
+          addresses.add(p.getPostingAddress());
+          addresses.add(p.getReceivingAddress());
+      });
+      modelMap.addAttribute("parcel", addresses);
       return "Worker/AddressesList";
     } catch(Exception e) {
       LoginViewModel loginViewModel = new LoginViewModel();

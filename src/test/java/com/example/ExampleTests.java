@@ -20,7 +20,9 @@ public class ExampleTests {
 
     @Test
     public void checkRegisterView() throws Exception{
-        this.mockMvc.perform(get("/User/profile").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        this.mockMvc.perform(post("/User/profile").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .param("username", "uzytkownik")
+                .param
         .andExpect(status().isOk())
                 .andExpect(content().contentType("applicatin/json"));
     }
